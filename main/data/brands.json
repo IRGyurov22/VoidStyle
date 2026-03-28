@@ -1,0 +1,23 @@
+[
+  {
+    "brand_name": "UrbanThread",
+    "country": "Italy",
+    "founded_year": 2008,
+    "style_focus": "vintage casual",
+    "brand_story": "UrbanThread creates retro-inspired streetwear with recycled fabrics and limited capsule drops."
+  },
+  {
+    "brand_name": "NordPeak",
+    "country": "Norway",
+    "founded_year": 1999,
+    "style_focus": "outdoor performance",
+    "brand_story": "NordPeak builds weather-resistant gear for hiking and alpine travel with a focus on durability."
+  },
+  {
+    "brand_name": "MonoForma",
+    "country": "Japan",
+    "founded_year": 2014,
+    "style_focus": "minimalist formal",
+    "brand_story": "MonoForma designs modern formal wear with neutral palettes and tailored silhouettes."
+  }
+]

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weaviate Query Agent UI</title>
+    <style>
+      :root {
+        --bg: #f4f6f8;
+        --panel: #ffffff;
+        --text: #1a1f2b;
+        --muted: #586174;
+        --accent: #0f766e;
+        --accent-2: #155e75;
+        --border: #d8dee6;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: radial-gradient(circle at top right, #dff5f3, var(--bg) 45%);
+        color: var(--text);
+      }
+      .container {
+        max-width: 980px;
+        margin: 24px auto;
+        padding: 0 16px;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: 0 6px 20px rgba(9, 30, 66, 0.08);
+        margin-bottom: 16px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 1.6rem;
+      }
+      p,
+      li {
+        color: var(--muted);
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      button {
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 14px;
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
+      }
+      button.secondary {
+        background: var(--accent-2);
+      }
+      textarea {
+        width: 100%;
+        min-height: 90px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        font-family: inherit;
+      }
+      .alert {
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        background: #eef2ff;
+        border: 1px solid #c7d2fe;
+        color: #312e81;
+      }
+      .error {
+        background: #fef2f2;
+        border-color: #fecaca;
+        color: #991b1b;
+      }
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel">
+        <h1>Weaviate Query Agent Web Interface</h1>
+        <p>Domain: e-commerce. Collections used:</p>
+        <ul>
+          {% for c in collections %}
+          <li>{{ c }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% if boot_error %}
+      <div class="panel">
+        <div class="alert error">Configuration error: {{ boot_error }}</div>
+        <p>Check your .env file and restart the app.</p>
+      </div>
+      {% else %}
+      <div class="panel">
+        {% if message %}
+        <div class="alert">{{ message }}</div>
+        {% endif %}
+        <div class="row">
+          <form method="post" action="/setup">
+            <button type="submit">Setup Collections + Import Data</button>
+          </form>
+          <form method="post" action="/demo">
+            <button class="secondary" type="submit">Run 5-Query Demo</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="panel">
+        <form method="post" action="/ask">
+          <label for="question"><strong>Ask a question:</strong></label>
+          <textarea
+            id="question"
+            name="question"
+            placeholder="Example: Recommend in-stock shoes under 120 for rainy weather."
+          >{{ question }}</textarea>
+          <div style="margin-top: 10px">
+            <button type="submit">Ask Query Agent</button>
+          </div>
+        </form>
+      </div>
+
+      {% if answer %}
+      <div class="panel">
+        <h2 style="margin-top: 0">Agent Output</h2>
+        <pre>{{ answer }}</pre>
+      </div>
+      {% endif %}
+      {% endif %}
+    </div>
+  </body>
+</html>

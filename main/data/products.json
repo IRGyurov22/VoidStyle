@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Vintage Canvas Sneakers",
+    "category": "shoes",
+    "price": 59.99,
+    "in_stock": true,
+    "brand_name": "UrbanThread",
+    "description": "Low-top sneakers with washed canvas and gum sole, inspired by 90s street style."
+  },
+  {
+    "name": "Alpine Shield Jacket",
+    "category": "jackets",
+    "price": 189.00,
+    "in_stock": true,
+    "brand_name": "NordPeak",
+    "description": "Waterproof shell jacket with breathable membrane and storm hood for mountain weather."
+  },
+  {
+    "name": "Wool Blend Overcoat",
+    "category": "coats",
+    "price": 249.50,
+    "in_stock": false,
+    "brand_name": "MonoForma",
+    "description": "Structured wool blend overcoat for formal and business wear in cold seasons."
+  },
+  {
+    "name": "Retro Denim Shirt",
+    "category": "shirts",
+    "price": 74.00,
+    "in_stock": true,
+    "brand_name": "UrbanThread",
+    "description": "Vintage-cut denim shirt with faded wash and utility pockets for casual layering."
+  },
+  {
+    "name": "TrailGrip Hiking Boots",
+    "category": "shoes",
+    "price": 159.90,
+    "in_stock": true,
+    "brand_name": "NordPeak",
+    "description": "Mid-height hiking boots with deep-lug outsole and ankle support for uneven terrain."
+  },
+  {
+    "name": "Minimalist Oxford Shoes",
+    "category": "shoes",
+    "price": 210.00,
+    "in_stock": true,
+    "brand_name": "MonoForma",
+    "description": "Polished leather oxfords with sleek last and lightweight sole for formal events."
+  }
+]
