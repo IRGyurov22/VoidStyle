@@ -71,7 +71,7 @@ class WeaviateQueryAssistant:
         results.append(
             AgentResult(
                 title="3) Follow-up question",
-                prompt=conversation[1].content,
+                prompt=conversation[1].get("content", ""),
                 answer=r3.final_answer,
             )
         )

@@ -20,6 +20,110 @@ def _read_json(path: Path) -> list[dict[str, Any]]:
         raise DataLoaderError(f"Failed reading JSON file: {path}") from exc
 
 
+def _normalize_text(value: Any) -> str:
+    return " ".join(str(value).strip().split())
+
+
+def _to_bool(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value
+
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"true", "1", "yes", "y", "in stock", "instock"}:
+            return True
+        if normalized in {"false", "0", "no", "n", "out of stock", "oos"}:
+            return False
+
+    return bool(value)
+
+
+def _dedupe_rows(rows: list[dict[str, Any]], key_fields: tuple[str, ...]) -> list[dict[str, Any]]:
+    seen: set[tuple[str, ...]] = set()
+    deduped: list[dict[str, Any]] = []
+
+    for row in rows:
+        key = tuple(_normalize_text(row.get(field, "")).lower() for field in key_fields)
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(row)
+
+    return deduped
+
+
+def _clean_brands(raw_brands: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    cleaned: list[dict[str, Any]] = []
+
+    for row in raw_brands:
+        brand_name = _normalize_text(row.get("brand_name", ""))
+        country = _normalize_text(row.get("country", ""))
+        style_focus = _normalize_text(row.get("style_focus", "")).lower()
+        brand_story = _normalize_text(row.get("brand_story", ""))
+
+        if not (brand_name and country and style_focus and brand_story):
+            continue
+
+        try:
+            founded_year = int(row.get("founded_year"))
+        except (TypeError, ValueError):
+            continue
+
+        if founded_year < 1800 or founded_year > 2100:
+            continue
+
+        cleaned.append(
+            {
+                "brand_name": brand_name,
+                "country": country,
+                "founded_year": founded_year,
+                "style_focus": style_focus,
+                "brand_story": brand_story,
+            }
+        )
+
+    return _dedupe_rows(cleaned, ("brand_name",))
+
+
+def _clean_products(raw_products: list[dict[str, Any]], valid_brands: set[str]) -> list[dict[str, Any]]:
+    cleaned: list[dict[str, Any]] = []
+
+    for row in raw_products:
+        name = _normalize_text(row.get("name", ""))
+        category = _normalize_text(row.get("category", "")).lower()
+        brand_name = _normalize_text(row.get("brand_name", ""))
+        description = _normalize_text(row.get("description", ""))
+
+        if not (name and category and brand_name and description):
+            continue
+
+        if brand_name not in valid_brands:
+            continue
+
+        try:
+            price = round(float(row.get("price")), 2)
+        except (TypeError, ValueError):
+            continue
+
+        if price < 0:
+            continue
+
+        in_stock = _to_bool(row.get("in_stock", False))
+
+        cleaned.append(
+            {
+                "name": name,
+                "category": category,
+                "price": price,
+                "in_stock": in_stock,
+                "brand_name": brand_name,
+                "description": description,
+            }
+        )
+
+    return _dedupe_rows(cleaned, ("name", "brand_name"))
+
+
 def _create_brands_collection(client) -> None:
     if client.collections.exists(BRANDS_COLLECTION):
         return
@@ -105,8 +209,12 @@ def ensure_schema(client) -> None:
 
 
 def import_seed_data(client, data_dir: Path) -> None:
-    brands = _read_json(data_dir / "brands.json")
-    products = _read_json(data_dir / "products.json")
+    raw_brands = _read_json(data_dir / "brands.json")
+    brands = _clean_brands(raw_brands)
+    valid_brand_names = {row["brand_name"] for row in brands}
+
+    raw_products = _read_json(data_dir / "products.json")
+    products = _clean_products(raw_products, valid_brands=valid_brand_names)
 
     brands_collection = client.collections.get(BRANDS_COLLECTION)
     products_collection = client.collections.get(PRODUCTS_COLLECTION)

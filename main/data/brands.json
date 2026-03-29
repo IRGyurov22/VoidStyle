@@ -19,5 +19,89 @@
     "founded_year": 2014,
     "style_focus": "minimalist formal",
     "brand_story": "MonoForma designs modern formal wear with neutral palettes and tailored silhouettes."
+  },
+  {
+    "brand_name": "Seabrook Atelier",
+    "country": "Portugal",
+    "founded_year": 2011,
+    "style_focus": "coastal smart-casual",
+    "brand_story": "Seabrook Atelier blends maritime heritage textures with polished city-ready tailoring."
+  },
+  {
+    "brand_name": "Terra Loom",
+    "country": "Canada",
+    "founded_year": 2005,
+    "style_focus": "eco outdoor",
+    "brand_story": "Terra Loom builds sustainable outdoor essentials using recycled fibers and rugged finishes."
+  },
+  {
+    "brand_name": "Aurum Lane",
+    "country": "United Kingdom",
+    "founded_year": 2017,
+    "style_focus": "contemporary eveningwear",
+    "brand_story": "Aurum Lane crafts sharp eventwear with lightweight construction and modern silhouettes."
+  },
+  {
+    "brand_name": "Kestrel Union",
+    "country": "United States",
+    "founded_year": 2003,
+    "style_focus": "urban utility",
+    "brand_story": "Kestrel Union merges technical fabrics with commuter-focused everyday essentials."
+  },
+  {
+    "brand_name": "Lumen Atelier",
+    "country": "France",
+    "founded_year": 2012,
+    "style_focus": "elevated essentials",
+    "brand_story": "Lumen Atelier designs polished staples with refined cuts and subtle detailing."
+  },
+  {
+    "brand_name": "Sierra Vale",
+    "country": "New Zealand",
+    "founded_year": 2001,
+    "style_focus": "trail lifestyle",
+    "brand_story": "Sierra Vale creates crossover gear built for weekend trails and weekday city life."
+  },
+  {
+    "brand_name": "Dovetail Studio",
+    "country": "Sweden",
+    "founded_year": 2016,
+    "style_focus": "scandi minimal",
+    "brand_story": "Dovetail Studio focuses on clean Scandinavian silhouettes and durable natural fibers."
+  },
+  {
+    "brand_name": "Mariner Black",
+    "country": "Spain",
+    "founded_year": 2009,
+    "style_focus": "nautical utility",
+    "brand_story": "Mariner Black delivers weather-minded coastal staples with technical trims and timeless cuts."
+  },
+  {
+    "brand_name": "Velour Circuit",
+    "country": "Germany",
+    "founded_year": 2018,
+    "style_focus": "tech athleisure",
+    "brand_story": "Velour Circuit blends performance textiles and sleek silhouettes for active urban routines."
+  },
+  {
+    "brand_name": "Prairie & Pine",
+    "country": "United States",
+    "founded_year": 1996,
+    "style_focus": "heritage workwear",
+    "brand_story": "Prairie & Pine crafts durable workwear-inspired garments with modern comfort upgrades."
+  },
+  {
+    "brand_name": "Obsidian Row",
+    "country": "South Korea",
+    "founded_year": 2015,
+    "style_focus": "monochrome tailoring",
+    "brand_story": "Obsidian Row specializes in sharp monochrome tailoring with precise contemporary proportions."
+  },
+  {
+    "brand_name": "Bloom District",
+    "country": "Netherlands",
+    "founded_year": 2013,
+    "style_focus": "playful contemporary",
+    "brand_story": "Bloom District is known for color-forward everyday pieces designed for flexible city wardrobes."
   }
 ]

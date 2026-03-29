@@ -46,5 +46,533 @@
     "in_stock": true,
     "brand_name": "MonoForma",
     "description": "Polished leather oxfords with sleek last and lightweight sole for formal events."
+  },
+  {
+    "name": "Harborline Chino Pants",
+    "category": "pants",
+    "price": 92.50,
+    "in_stock": true,
+    "brand_name": "Seabrook Atelier",
+    "description": "Slim-tapered chinos with stretch cotton for office-to-weekend versatility."
+  },
+  {
+    "name": "Stormbound Parka",
+    "category": "jackets",
+    "price": 279.00,
+    "in_stock": true,
+    "brand_name": "Terra Loom",
+    "description": "Insulated parka with sealed seams and adjustable cuffs for harsh winter commutes."
+  },
+  {
+    "name": "Cedar Trail Fleece",
+    "category": "hoodies",
+    "price": 88.00,
+    "in_stock": true,
+    "brand_name": "Terra Loom",
+    "description": "Recycled microfleece layer with zip chest pocket for hiking and daily wear."
+  },
+  {
+    "name": "Evening Arc Blazer",
+    "category": "blazers",
+    "price": 325.00,
+    "in_stock": false,
+    "brand_name": "Aurum Lane",
+    "description": "Single-button structured blazer designed for cocktail and formal evening settings."
+  },
+  {
+    "name": "Monsoon City Loafers",
+    "category": "shoes",
+    "price": 145.00,
+    "in_stock": true,
+    "brand_name": "Seabrook Atelier",
+    "description": "Water-resistant suede loafers with grippy sole tuned for rainy sidewalks."
+  },
+  {
+    "name": "Heritage Pleat Trousers",
+    "category": "pants",
+    "price": 168.00,
+    "in_stock": true,
+    "brand_name": "MonoForma",
+    "description": "High-waist pleated trousers with clean drape for refined minimalist outfits."
+  },
+  {
+    "name": "Summit Grid Base Layer",
+    "category": "shirts",
+    "price": 54.00,
+    "in_stock": true,
+    "brand_name": "NordPeak",
+    "description": "Thermal grid-knit base layer for breathability during active cold-weather use."
+  },
+  {
+    "name": "Cityline Waxed Tote",
+    "category": "bags",
+    "price": 120.00,
+    "in_stock": false,
+    "brand_name": "UrbanThread",
+    "description": "Waxed canvas tote with reinforced straps and laptop sleeve for daily carry."
+  },
+  {
+    "name": "Nocturne Silk Tie",
+    "category": "accessories",
+    "price": 49.00,
+    "in_stock": true,
+    "brand_name": "Aurum Lane",
+    "description": "Matte-finish silk tie cut for modern narrow-knot evening looks."
+  },
+  {
+    "name": "Ridgewalk Softshell Pants",
+    "category": "pants",
+    "price": 134.00,
+    "in_stock": true,
+    "brand_name": "NordPeak",
+    "description": "Abrasion-resistant softshell pants with articulated knees for trekking comfort."
+  },
+  {
+    "name": "Metro Utility Overshirt",
+    "category": "shirts",
+    "price": 96.00,
+    "in_stock": true,
+    "brand_name": "Kestrel Union",
+    "description": "Midweight overshirt with snap pockets and stain-resistant finish for daily commuting."
+  },
+  {
+    "name": "Dockside Knit Polo",
+    "category": "shirts",
+    "price": 68.00,
+    "in_stock": true,
+    "brand_name": "Seabrook Atelier",
+    "description": "Breathable cotton knit polo with ribbed collar for warm coastal evenings."
+  },
+  {
+    "name": "Fjordline Rain Shell",
+    "category": "jackets",
+    "price": 219.00,
+    "in_stock": true,
+    "brand_name": "NordPeak",
+    "description": "Packable rain shell with pit zips and storm visor for unpredictable downpours."
+  },
+  {
+    "name": "Slate Merino Crew",
+    "category": "shirts",
+    "price": 89.00,
+    "in_stock": true,
+    "brand_name": "Dovetail Studio",
+    "description": "Fine-gauge merino crewneck that regulates temperature across changing seasons."
+  },
+  {
+    "name": "Golden Hour Dinner Jacket",
+    "category": "blazers",
+    "price": 410.00,
+    "in_stock": true,
+    "brand_name": "Aurum Lane",
+    "description": "Velvet-trim dinner jacket tailored for black-tie evenings and events."
+  },
+  {
+    "name": "Cobble Runner Sneakers",
+    "category": "shoes",
+    "price": 102.00,
+    "in_stock": true,
+    "brand_name": "UrbanThread",
+    "description": "Chunky retro runners with suede overlays and cushioned heel for city walks."
+  },
+  {
+    "name": "Verdant Field Vest",
+    "category": "jackets",
+    "price": 118.00,
+    "in_stock": false,
+    "brand_name": "Terra Loom",
+    "description": "Quilted field vest with recycled insulation for transitional weather layering."
+  },
+  {
+    "name": "Lumen Tailored Tee",
+    "category": "shirts",
+    "price": 52.00,
+    "in_stock": true,
+    "brand_name": "Lumen Atelier",
+    "description": "Structured heavyweight T-shirt with clean drape for elevated casual styling."
+  },
+  {
+    "name": "Tidal Slip-On Mules",
+    "category": "shoes",
+    "price": 134.00,
+    "in_stock": true,
+    "brand_name": "Seabrook Atelier",
+    "description": "Soft leather slip-on mules with flexible sole for effortless smart-casual wear."
+  },
+  {
+    "name": "Axis Commute Backpack",
+    "category": "bags",
+    "price": 149.00,
+    "in_stock": true,
+    "brand_name": "Kestrel Union",
+    "description": "Water-repellent commuter backpack with laptop compartment and modular organizer."
+  },
+  {
+    "name": "Hearth Wool Cardigan",
+    "category": "hoodies",
+    "price": 124.00,
+    "in_stock": true,
+    "brand_name": "Dovetail Studio",
+    "description": "Chunky wool cardigan with horn buttons for cozy minimalist layering."
+  },
+  {
+    "name": "Summit Crest Beanie",
+    "category": "accessories",
+    "price": 34.00,
+    "in_stock": true,
+    "brand_name": "Sierra Vale",
+    "description": "Rib-knit beanie using recycled yarn for cold trail mornings."
+  },
+  {
+    "name": "Parliament Derby Shoes",
+    "category": "shoes",
+    "price": 238.00,
+    "in_stock": false,
+    "brand_name": "MonoForma",
+    "description": "Matte calfskin derby with lightweight stacked sole for boardroom formality."
+  },
+  {
+    "name": "Canopy Trek Shorts",
+    "category": "pants",
+    "price": 79.00,
+    "in_stock": true,
+    "brand_name": "Sierra Vale",
+    "description": "Stretch ripstop shorts with quick-dry finish and secure zip pockets."
+  },
+  {
+    "name": "Afterlight Satin Blouse",
+    "category": "shirts",
+    "price": 132.00,
+    "in_stock": true,
+    "brand_name": "Lumen Atelier",
+    "description": "Fluid satin blouse with draped neckline for modern evening dressing."
+  },
+  {
+    "name": "Granite Route Hikers",
+    "category": "shoes",
+    "price": 182.00,
+    "in_stock": true,
+    "brand_name": "Sierra Vale",
+    "description": "All-terrain hiking shoes with reinforced toe cap and responsive midsole foam."
+  },
+  {
+    "name": "Quartermaster Cargo Pants",
+    "category": "pants",
+    "price": 110.00,
+    "in_stock": true,
+    "brand_name": "Kestrel Union",
+    "description": "Tapered cargo pants with hidden phone pocket and articulated seams."
+  },
+  {
+    "name": "Shoreline Linen Blazer",
+    "category": "blazers",
+    "price": 286.00,
+    "in_stock": true,
+    "brand_name": "Seabrook Atelier",
+    "description": "Breathable linen blazer for summer weddings and polished warm-weather looks."
+  },
+  {
+    "name": "Signal Reflective Windbreaker",
+    "category": "jackets",
+    "price": 164.00,
+    "in_stock": true,
+    "brand_name": "Kestrel Union",
+    "description": "Lightweight windbreaker with reflective panels for low-light bike commuting."
+  },
+  {
+    "name": "Archive Pleated Skirt",
+    "category": "skirts",
+    "price": 118.00,
+    "in_stock": true,
+    "brand_name": "Lumen Atelier",
+    "description": "Knife-pleated midi skirt with crisp movement and elegant drape."
+  },
+  {
+    "name": "Driftwood Leather Belt",
+    "category": "accessories",
+    "price": 58.00,
+    "in_stock": true,
+    "brand_name": "Dovetail Studio",
+    "description": "Vegetable-tanned leather belt with brushed buckle for understated daily wear."
+  },
+  {
+    "name": "Northbound Expedition Duffel",
+    "category": "bags",
+    "price": 198.00,
+    "in_stock": true,
+    "brand_name": "Terra Loom",
+    "description": "Rugged duffel bag with weather-sealed zipper and removable shoulder strap."
+  },
+  {
+    "name": "Moonlit Opera Pumps",
+    "category": "shoes",
+    "price": 264.00,
+    "in_stock": true,
+    "brand_name": "Aurum Lane",
+    "description": "Sculpted-heel pumps with satin finish for gala and evening occasions."
+  },
+  {
+    "name": "Harbor Fog Trench",
+    "category": "coats",
+    "price": 312.00,
+    "in_stock": false,
+    "brand_name": "Seabrook Atelier",
+    "description": "Double-breasted trench coat with storm flap and removable liner."
+  },
+  {
+    "name": "Timberline Flannel",
+    "category": "shirts",
+    "price": 72.00,
+    "in_stock": true,
+    "brand_name": "Sierra Vale",
+    "description": "Brushed flannel shirt built for layering on cool mornings outdoors."
+  },
+  {
+    "name": "Contour Knit Dress",
+    "category": "dresses",
+    "price": 176.00,
+    "in_stock": true,
+    "brand_name": "Lumen Atelier",
+    "description": "Body-skimming knit dress with long sleeves and minimalist finishing."
+  },
+  {
+    "name": "Stonebridge Chelsea Boots",
+    "category": "shoes",
+    "price": 228.00,
+    "in_stock": true,
+    "brand_name": "Dovetail Studio",
+    "description": "Streamlined leather Chelsea boots with grippy sole for wet streets."
+  },
+  {
+    "name": "Nightfall Pocket Square",
+    "category": "accessories",
+    "price": 29.00,
+    "in_stock": true,
+    "brand_name": "Aurum Lane",
+    "description": "Silk blend pocket square with subtle sheen for formal suiting accents."
+  },
+  {
+    "name": "Windward Sailing Anorak",
+    "category": "jackets",
+    "price": 207.00,
+    "in_stock": true,
+    "brand_name": "Seabrook Atelier",
+    "description": "Half-zip anorak with salt-resistant fabric and vented back panel."
+  },
+  {
+    "name": "Granite Ember Puffer",
+    "category": "jackets",
+    "price": 265.00,
+    "in_stock": true,
+    "brand_name": "Terra Loom",
+    "description": "Recycled down puffer with packable hood for cold urban winters."
+  },
+  {
+    "name": "Platform Court Sneakers",
+    "category": "shoes",
+    "price": 94.00,
+    "in_stock": true,
+    "brand_name": "UrbanThread",
+    "description": "Retro platform court sneakers with cushioned footbed and contrast panels."
+  },
+  {
+    "name": "Harbor Guard Deck Boots",
+    "category": "shoes",
+    "price": 172.00,
+    "in_stock": true,
+    "brand_name": "Mariner Black",
+    "description": "Slip-resistant deck boots built with quick-dry lining for wet waterfront conditions."
+  },
+  {
+    "name": "Pulse Weave Training Tee",
+    "category": "shirts",
+    "price": 47.00,
+    "in_stock": true,
+    "brand_name": "Velour Circuit",
+    "description": "Moisture-wicking training T-shirt with bonded seams for distraction-free movement."
+  },
+  {
+    "name": "Forge Line Work Jacket",
+    "category": "jackets",
+    "price": 154.00,
+    "in_stock": true,
+    "brand_name": "Prairie & Pine",
+    "description": "Canvas work jacket with reinforced elbows and brushed lining for daily durability."
+  },
+  {
+    "name": "Midnight Column Suit Pants",
+    "category": "pants",
+    "price": 188.00,
+    "in_stock": true,
+    "brand_name": "Obsidian Row",
+    "description": "Tapered monochrome suit pants with stretch wool blend and sharp pressed crease."
+  },
+  {
+    "name": "Petal Transit Wind Coat",
+    "category": "coats",
+    "price": 236.00,
+    "in_stock": true,
+    "brand_name": "Bloom District",
+    "description": "Lightweight wind coat in color-block palette for breezy city commutes."
+  },
+  {
+    "name": "Dock Lantern Quarter Zip",
+    "category": "hoodies",
+    "price": 86.00,
+    "in_stock": true,
+    "brand_name": "Mariner Black",
+    "description": "Salt-air resistant quarter-zip knit with soft interior and high neck guard."
+  },
+  {
+    "name": "Circuit Tempo Joggers",
+    "category": "pants",
+    "price": 98.00,
+    "in_stock": true,
+    "brand_name": "Velour Circuit",
+    "description": "Athletic joggers with zip hems and four-way stretch for gym-to-street transitions."
+  },
+  {
+    "name": "Rail Yard Denim",
+    "category": "pants",
+    "price": 112.00,
+    "in_stock": false,
+    "brand_name": "Prairie & Pine",
+    "description": "Heavyweight raw denim with straight cut and durable copper hardware."
+  },
+  {
+    "name": "Shadowline Wool Overcoat",
+    "category": "coats",
+    "price": 348.00,
+    "in_stock": true,
+    "brand_name": "Obsidian Row",
+    "description": "Longline wool overcoat in matte black with hidden placket and clean shoulder."
+  },
+  {
+    "name": "Tulip Grid Cardigan",
+    "category": "hoodies",
+    "price": 93.00,
+    "in_stock": true,
+    "brand_name": "Bloom District",
+    "description": "Patterned knit cardigan with relaxed fit and soft recycled yarn blend."
+  },
+  {
+    "name": "Seastack Utility Tote",
+    "category": "bags",
+    "price": 137.00,
+    "in_stock": true,
+    "brand_name": "Mariner Black",
+    "description": "Waxed canvas utility tote with water-shedding base and rope-style handles."
+  },
+  {
+    "name": "Kinetic Pulse Sneakers",
+    "category": "shoes",
+    "price": 126.00,
+    "in_stock": true,
+    "brand_name": "Velour Circuit",
+    "description": "Lightweight mesh sneakers with responsive foam platform for all-day movement."
+  },
+  {
+    "name": "Foundry Flannel Overshirt",
+    "category": "shirts",
+    "price": 82.00,
+    "in_stock": true,
+    "brand_name": "Prairie & Pine",
+    "description": "Midweight flannel overshirt with chest utility pockets and brushed warmth."
+  },
+  {
+    "name": "Raven Pleat Blazer",
+    "category": "blazers",
+    "price": 296.00,
+    "in_stock": true,
+    "brand_name": "Obsidian Row",
+    "description": "Single-breasted monochrome blazer with sculpted waist and satin sleeve lining."
+  },
+  {
+    "name": "Canal Stripe Midi Dress",
+    "category": "dresses",
+    "price": 164.00,
+    "in_stock": true,
+    "brand_name": "Bloom District",
+    "description": "Stripe-pattern midi dress with cinched waist and fluid drape for day-to-night wear."
+  },
+  {
+    "name": "Harbor Signal Rain Hat",
+    "category": "accessories",
+    "price": 31.00,
+    "in_stock": true,
+    "brand_name": "Mariner Black",
+    "description": "Packable rain hat with bonded seams and reflective trim for wet weather."
+  },
+  {
+    "name": "Aero Mesh Track Jacket",
+    "category": "jackets",
+    "price": 121.00,
+    "in_stock": true,
+    "brand_name": "Velour Circuit",
+    "description": "Breathable track jacket with vent channels and quick-dry panel mapping."
+  },
+  {
+    "name": "Frontier Corduroy Shirt",
+    "category": "shirts",
+    "price": 76.00,
+    "in_stock": true,
+    "brand_name": "Prairie & Pine",
+    "description": "Soft corduroy shirt with pearl snaps and heritage yoke construction."
+  },
+  {
+    "name": "Graphite Column Shirt",
+    "category": "shirts",
+    "price": 141.00,
+    "in_stock": true,
+    "brand_name": "Obsidian Row",
+    "description": "Structured monochrome dress shirt with concealed placket and minimal collar."
+  },
+  {
+    "name": "Orchid Lane Pleated Pants",
+    "category": "pants",
+    "price": 119.00,
+    "in_stock": true,
+    "brand_name": "Bloom District",
+    "description": "Lightweight pleated pants in playful tones with comfortable elastic back waist."
+  },
+  {
+    "name": "Tidebreak Sailor Blazer",
+    "category": "blazers",
+    "price": 271.00,
+    "in_stock": false,
+    "brand_name": "Mariner Black",
+    "description": "Double-breasted blazer with nautical buttons and weather-ready wool blend."
+  },
+  {
+    "name": "Volt Compression Shorts",
+    "category": "pants",
+    "price": 42.00,
+    "in_stock": true,
+    "brand_name": "Velour Circuit",
+    "description": "Performance compression shorts with supportive knit and anti-chafe seams."
+  },
+  {
+    "name": "Canyon Rivet Boots",
+    "category": "shoes",
+    "price": 201.00,
+    "in_stock": true,
+    "brand_name": "Prairie & Pine",
+    "description": "Rugged leather boots with lug outsole and shock-absorbing cork footbed."
+  },
+  {
+    "name": "Noir Minimal Tote",
+    "category": "bags",
+    "price": 176.00,
+    "in_stock": true,
+    "brand_name": "Obsidian Row",
+    "description": "Structured black tote with magnetic closure and minimalist hardware profile."
+  },
+  {
+    "name": "Bloomline Cropped Jacket",
+    "category": "jackets",
+    "price": 133.00,
+    "in_stock": true,
+    "brand_name": "Bloom District",
+    "description": "Cropped jacket with contrast stitching and soft twill texture for layered outfits."
   }
 ]
