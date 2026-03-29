@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from html import escape
 import os
 from pathlib import Path
+import re
 
 from flask import Flask, redirect, render_template, request, url_for
 
@@ -15,6 +17,51 @@ from src.data_loader import (
 )
 from src.query_assistant import WeaviateQueryAssistant
 from src.weaviate_client import connect
+
+
+NUMBERED_ITEM_RE = re.compile(r"^\s*\d+\.\s+(.+)$")
+PRICE_RE = re.compile(r"(Price:\s*\$?\d+(?:\.\d{2})?)")
+
+
+def format_answer_for_display(answer: str) -> str:
+    lines = [line.strip() for line in answer.splitlines() if line.strip()]
+    if not lines:
+        return ""
+
+    intro_lines: list[str] = []
+    items: list[str] = []
+    outro_lines: list[str] = []
+    in_list = False
+
+    for line in lines:
+        match = NUMBERED_ITEM_RE.match(line)
+        if match:
+            in_list = True
+            item_html = escape(match.group(1))
+            item_html = PRICE_RE.sub(r'<span class="answer-price">\\1</span>', item_html)
+            items.append(item_html)
+            continue
+
+        if in_list:
+            outro_lines.append(escape(line))
+        else:
+            intro_lines.append(escape(line))
+
+    if not items:
+        return "<p class=\"answer-plain\">" + "<br>".join(intro_lines) + "</p>"
+
+    html_parts: list[str] = []
+    if intro_lines:
+        html_parts.append("<p class=\"answer-intro\">" + " ".join(intro_lines) + "</p>")
+
+    html_parts.append("<ol class=\"answer-list\">")
+    html_parts.extend(f"<li>{item}</li>" for item in items)
+    html_parts.append("</ol>")
+
+    if outro_lines:
+        html_parts.append("<p class=\"answer-outro\">" + " ".join(outro_lines) + "</p>")
+
+    return "".join(html_parts)
 
 
 def _bootstrap_runtime():
@@ -55,12 +102,14 @@ def create_app() -> Flask:
         boot_error = app.config.get("BOOT_ERROR")
         message = request.args.get("message", "")
         answer = request.args.get("answer", "")
+        formatted_answer = format_answer_for_display(answer) if answer else ""
         question = request.args.get("question", "")
         return render_template(
             "index.html",
             boot_error=boot_error,
             message=message,
             answer=answer,
+            formatted_answer=formatted_answer,
             question=question,
             collections=[PRODUCTS_COLLECTION, BRANDS_COLLECTION],
         )
