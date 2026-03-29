@@ -574,5 +574,261 @@
     "in_stock": true,
     "brand_name": "Bloom District",
     "description": "Cropped jacket with contrast stitching and soft twill texture for layered outfits."
+  },
+  {
+    "name": "Breakwater Storm Boots",
+    "category": "shoes",
+    "price": 189.00,
+    "in_stock": true,
+    "brand_name": "Fjord & Flint",
+    "description": "Waterproof lace-up boots with insulated lining and anti-slip outsole for icy sidewalks."
+  },
+  {
+    "name": "Harbor Grid Shell",
+    "category": "jackets",
+    "price": 214.00,
+    "in_stock": true,
+    "brand_name": "Fjord & Flint",
+    "description": "Three-layer technical shell with articulated hood and taped seams for storm protection."
+  },
+  {
+    "name": "Solar Drift Sandals",
+    "category": "shoes",
+    "price": 79.00,
+    "in_stock": true,
+    "brand_name": "Solstice Loom",
+    "description": "Cushioned leather sandals with quick-dry lining and supportive arch for hot-weather wear."
+  },
+  {
+    "name": "Coral Route Linen Shirt",
+    "category": "shirts",
+    "price": 88.00,
+    "in_stock": true,
+    "brand_name": "Solstice Loom",
+    "description": "Breathable linen shirt with UV-treated weave and relaxed camp collar silhouette."
+  },
+  {
+    "name": "Axis Seam Blazer",
+    "category": "blazers",
+    "price": 318.00,
+    "in_stock": true,
+    "brand_name": "Meridian Atelier",
+    "description": "Architectural blazer with angular seam lines and featherweight wool blend construction."
+  },
+  {
+    "name": "Vector Pleat Trousers",
+    "category": "pants",
+    "price": 172.00,
+    "in_stock": true,
+    "brand_name": "Meridian Atelier",
+    "description": "High-rise trousers with clean front pleats and tapered leg for refined minimal looks."
+  },
+  {
+    "name": "Hearthline Cable Sweater",
+    "category": "hoodies",
+    "price": 128.00,
+    "in_stock": true,
+    "brand_name": "Emberfield Collective",
+    "description": "Dense merino cable-knit sweater with reinforced cuffs for cold-weather layering."
+  },
+  {
+    "name": "Bogland Waxed Field Coat",
+    "category": "coats",
+    "price": 292.00,
+    "in_stock": false,
+    "brand_name": "Emberfield Collective",
+    "description": "Waxed cotton field coat with corduroy collar and storm flap for wet rural commutes."
+  },
+  {
+    "name": "Basalt Ridge Trail Shoes",
+    "category": "shoes",
+    "price": 167.00,
+    "in_stock": true,
+    "brand_name": "Cinder Coast",
+    "description": "Trail runners with rock plate, grippy rubber lugs, and breathable ripstop upper."
+  },
+  {
+    "name": "Ashfall Technical Pack",
+    "category": "bags",
+    "price": 158.00,
+    "in_stock": true,
+    "brand_name": "Cinder Coast",
+    "description": "30-liter technical backpack with hydration sleeve and abrasion-resistant base panel."
+  },
+  {
+    "name": "Summerset Chino Shorts",
+    "category": "pants",
+    "price": 69.00,
+    "in_stock": true,
+    "brand_name": "Solstice Loom",
+    "description": "Lightweight chino shorts with stretch twill and moisture-managing inner waistband."
+  },
+  {
+    "name": "Monolith Minimal Sneakers",
+    "category": "shoes",
+    "price": 149.00,
+    "in_stock": true,
+    "brand_name": "Meridian Atelier",
+    "description": "Low-profile monochrome sneakers with sculpted cupsole and premium smooth leather upper."
+  },
+  {
+    "name": "Nikeys Air Drift Runners",
+    "category": "shoes",
+    "price": 138.00,
+    "in_stock": true,
+    "brand_name": "Nikeys",
+    "description": "Lightweight running shoes with cushioned foam platform and breathable knit upper."
+  },
+  {
+    "name": "Nikeys Velocity Training Shorts",
+    "category": "pants",
+    "price": 44.00,
+    "in_stock": true,
+    "brand_name": "Nikeys",
+    "description": "Stretch training shorts with sweat-wicking fabric and secure zip pocket."
+  },
+  {
+    "name": "Addidas Tri-Line Court Sneakers",
+    "category": "shoes",
+    "price": 112.00,
+    "in_stock": true,
+    "brand_name": "Addidas",
+    "description": "Classic low-top court sneakers with padded collar and durable cupsole grip."
+  },
+  {
+    "name": "Addidas Metro Track Jacket",
+    "category": "jackets",
+    "price": 96.00,
+    "in_stock": true,
+    "brand_name": "Addidas",
+    "description": "Zip-front track jacket with rib cuffs and moisture-managing interior mesh."
+  },
+  {
+    "name": "ECS Pulse Gaming Hoodie",
+    "category": "hoodies",
+    "price": 89.00,
+    "in_stock": true,
+    "brand_name": "ECS",
+    "description": "Midweight hoodie with ventilation zones and clean reflective panel lines."
+  },
+  {
+    "name": "ECS Night Grid Sneakers",
+    "category": "shoes",
+    "price": 119.00,
+    "in_stock": true,
+    "brand_name": "ECS",
+    "description": "Street-tech sneakers with breathable mesh shell and shock-absorbing outsole pods."
+  },
+  {
+    "name": "Pooma SprintEdge Trainers",
+    "category": "shoes",
+    "price": 104.00,
+    "in_stock": true,
+    "brand_name": "Pooma",
+    "description": "Agile trainers with responsive midsole and split-groove outsole for quick direction changes."
+  },
+  {
+    "name": "Pooma Relay Zip Top",
+    "category": "shirts",
+    "price": 58.00,
+    "in_stock": true,
+    "brand_name": "Pooma",
+    "description": "Half-zip training top with quick-dry fabric and thumb-loop sleeves."
+  },
+  {
+    "name": "Reebuk Retro Lift Shoes",
+    "category": "shoes",
+    "price": 129.00,
+    "in_stock": true,
+    "brand_name": "Reebuk",
+    "description": "Stable training shoes with reinforced heel cage for gym sessions and lifting."
+  },
+  {
+    "name": "Reebuk Core Motion Tee",
+    "category": "shirts",
+    "price": 39.00,
+    "in_stock": true,
+    "brand_name": "Reebuk",
+    "description": "Soft jersey tee with stretch paneling and anti-odor treatment for workouts."
+  },
+  {
+    "name": "New Balamce CloudRoad Runners",
+    "category": "shoes",
+    "price": 146.00,
+    "in_stock": true,
+    "brand_name": "New Balamce",
+    "description": "Daily mileage runners with plush cushioning and supportive heel geometry."
+  },
+  {
+    "name": "New Balamce Flex Commuter Backpack",
+    "category": "bags",
+    "price": 132.00,
+    "in_stock": true,
+    "brand_name": "New Balamce",
+    "description": "Commuter backpack with laptop sleeve, padded straps, and quick-access utility pockets."
+  },
+  {
+    "name": "SkechAir Glide Walkers",
+    "category": "shoes",
+    "price": 93.00,
+    "in_stock": true,
+    "brand_name": "SkechAir",
+    "description": "Slip-on walking shoes with air-cushioned sole and breathable stretch upper."
+  },
+  {
+    "name": "SkechAir Flex Lounge Hoodie",
+    "category": "hoodies",
+    "price": 67.00,
+    "in_stock": true,
+    "brand_name": "SkechAir",
+    "description": "Relaxed hoodie with brushed interior and lightweight thermal comfort for everyday wear."
+  },
+  {
+    "name": "Vanzz Deckline Skate Shoes",
+    "category": "shoes",
+    "price": 84.00,
+    "in_stock": true,
+    "brand_name": "Vanzz",
+    "description": "Canvas skate shoes with reinforced toe bumper and grippy waffle-pattern outsole."
+  },
+  {
+    "name": "Vanzz Parkside Cargo Shorts",
+    "category": "pants",
+    "price": 62.00,
+    "in_stock": true,
+    "brand_name": "Vanzz",
+    "description": "Skate-inspired cargo shorts with durable twill and secure side storage pockets."
+  },
+  {
+    "name": "Convarse HighTop Legacy",
+    "category": "shoes",
+    "price": 89.00,
+    "in_stock": true,
+    "brand_name": "Convarse",
+    "description": "High-top canvas sneakers with vintage foxing tape and cushioned insole upgrade."
+  },
+  {
+    "name": "Convarse City Court Jacket",
+    "category": "jackets",
+    "price": 109.00,
+    "in_stock": true,
+    "brand_name": "Convarse",
+    "description": "Light bomber jacket with snap placket and court-inspired striped rib trims."
+  },
+  {
+    "name": "Asixx Tempo Pro Runners",
+    "category": "shoes",
+    "price": 152.00,
+    "in_stock": true,
+    "brand_name": "Asixx",
+    "description": "Performance runners with guided stability frame and energetic rebound midsole foam."
+  },
+  {
+    "name": "Asixx Aeroflow Shell",
+    "category": "jackets",
+    "price": 141.00,
+    "in_stock": true,
+    "brand_name": "Asixx",
+    "description": "Ultralight running shell with laser-cut vents and packable hood for variable weather."
   }
 ]

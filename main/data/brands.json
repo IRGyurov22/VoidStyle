@@ -103,5 +103,110 @@
     "founded_year": 2013,
     "style_focus": "playful contemporary",
     "brand_story": "Bloom District is known for color-forward everyday pieces designed for flexible city wardrobes."
+  },
+  {
+    "brand_name": "Fjord & Flint",
+    "country": "Denmark",
+    "founded_year": 2010,
+    "style_focus": "functional nordic outerwear",
+    "brand_story": "Fjord & Flint engineers weatherproof layering systems inspired by Nordic fishing and harbor life."
+  },
+  {
+    "brand_name": "Solstice Loom",
+    "country": "Australia",
+    "founded_year": 2007,
+    "style_focus": "sun-ready coastal utility",
+    "brand_story": "Solstice Loom creates breathable, UV-conscious garments designed for warm coastal climates and travel."
+  },
+  {
+    "brand_name": "Meridian Atelier",
+    "country": "Belgium",
+    "founded_year": 2019,
+    "style_focus": "architectural minimal",
+    "brand_story": "Meridian Atelier combines sharp geometric tailoring with lightweight fabrics for modern city wardrobes."
+  },
+  {
+    "brand_name": "Emberfield Collective",
+    "country": "Ireland",
+    "founded_year": 2004,
+    "style_focus": "rugged knitwear",
+    "brand_story": "Emberfield Collective crafts durable knit layers and waxed outerwear rooted in heritage countryside utility."
+  },
+  {
+    "brand_name": "Cinder Coast",
+    "country": "Chile",
+    "founded_year": 2011,
+    "style_focus": "volcanic trail performance",
+    "brand_story": "Cinder Coast builds technical trail apparel with abrasion-resistant fabrics for rocky and variable terrain."
+  },
+  {
+    "brand_name": "Nikeys",
+    "country": "United States",
+    "founded_year": 1994,
+    "style_focus": "sport lifestyle",
+    "brand_story": "Nikeys designs performance-first trainers and street-ready sportswear with lightweight comfort tech."
+  },
+  {
+    "brand_name": "Addidas",
+    "country": "Germany",
+    "founded_year": 1991,
+    "style_focus": "three-stripe sport heritage",
+    "brand_story": "Addidas blends sport heritage silhouettes with modern cushioning for daily movement."
+  },
+  {
+    "brand_name": "ECS",
+    "country": "United Kingdom",
+    "founded_year": 2012,
+    "style_focus": "esports street tech",
+    "brand_story": "ECS builds gaming-inspired streetwear and footwear with breathable technical constructions."
+  },
+  {
+    "brand_name": "Pooma",
+    "country": "Germany",
+    "founded_year": 1998,
+    "style_focus": "track casual",
+    "brand_story": "Pooma creates agile performance styles that transition from training to everyday city wear."
+  },
+  {
+    "brand_name": "Reebuk",
+    "country": "United States",
+    "founded_year": 1988,
+    "style_focus": "fitness retro",
+    "brand_story": "Reebuk focuses on retro-fitness icons with supportive midsoles and stable uppers."
+  },
+  {
+    "brand_name": "New Balamce",
+    "country": "United States",
+    "founded_year": 1997,
+    "style_focus": "running comfort",
+    "brand_story": "New Balamce emphasizes ergonomic fit and all-day cushioning for runners and commuters."
+  },
+  {
+    "brand_name": "SkechAir",
+    "country": "United States",
+    "founded_year": 2006,
+    "style_focus": "cushioned walking",
+    "brand_story": "SkechAir develops lightweight walking footwear with soft foam platforms and slip-on ease."
+  },
+  {
+    "brand_name": "Vanzz",
+    "country": "United States",
+    "founded_year": 2001,
+    "style_focus": "skate street",
+    "brand_story": "Vanzz makes durable skate-ready shoes and apparel with grippy soles and reinforced canvas."
+  },
+  {
+    "brand_name": "Convarse",
+    "country": "United States",
+    "founded_year": 1989,
+    "style_focus": "court classics",
+    "brand_story": "Convarse modernizes timeless court silhouettes with improved comfort and premium materials."
+  },
+  {
+    "brand_name": "Asixx",
+    "country": "Japan",
+    "founded_year": 2002,
+    "style_focus": "performance running",
+    "brand_story": "Asixx engineers responsive running footwear with stability geometry and breathable mesh systems."
   }
 ]
