@@ -830,5 +830,37 @@
     "in_stock": true,
     "brand_name": "Asixx",
     "description": "Ultralight running shell with laser-cut vents and packable hood for variable weather."
+  },
+  {
+    "name": "Nike Air Zoom Pulse",
+    "category": "shoes",
+    "price": 154.00,
+    "in_stock": true,
+    "brand_name": "Nike",
+    "description": "Responsive running shoes with cushioned forefoot and breathable engineered mesh upper."
+  },
+  {
+    "name": "Nike Court Street Low",
+    "category": "shoes",
+    "price": 112.00,
+    "in_stock": true,
+    "brand_name": "Nike",
+    "description": "Low-profile lifestyle sneakers with durable rubber cupsole and padded collar comfort."
+  },
+  {
+    "name": "Nike Dri-FIT Motion Tee",
+    "category": "shirts",
+    "price": 42.00,
+    "in_stock": true,
+    "brand_name": "Nike",
+    "description": "Sweat-wicking training shirt with lightweight stretch fabric for gym and running sessions."
+  },
+  {
+    "name": "Nike Pro Velocity Top",
+    "category": "shirts",
+    "price": 58.00,
+    "in_stock": true,
+    "brand_name": "Nike",
+    "description": "Slim athletic top with breathable side panels and quick-dry performance knit."
   }
 ]

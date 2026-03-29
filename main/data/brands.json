@@ -208,5 +208,12 @@
     "founded_year": 2002,
     "style_focus": "performance running",
     "brand_story": "Asixx engineers responsive running footwear with stability geometry and breathable mesh systems."
+  },
+  {
+    "brand_name": "Nike",
+    "country": "United States",
+    "founded_year": 1964,
+    "style_focus": "global sports performance",
+    "brand_story": "Nike creates performance footwear and athletic apparel designed for running, training, and everyday sport style."
   }
 ]
