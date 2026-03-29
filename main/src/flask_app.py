@@ -93,7 +93,6 @@ def create_app() -> Flask:
                 url_for(
                     "home",
                     message="Answer generated.",
-                    question=question,
                     answer=response.final_answer,
                 )
             )
