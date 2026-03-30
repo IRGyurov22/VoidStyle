@@ -6,7 +6,6 @@ from src.data_loader import PRODUCTS_COLLECTION
 
 
 def run_transformation_demo(client):
-    # Use on test data only. Transformation modifies data in place.
     add_tags = Operations.append_property(
         property_name="auto_tags",
         data_type=DataType.TEXT_ARRAY,

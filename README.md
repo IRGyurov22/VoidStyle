@@ -1,4 +1,4 @@
-# Weaviate E-Commerce Query System
+# Weaviate E-Commerce Query System - VoidStyle
 
 A Python project that uses Weaviate Agents to answer natural-language questions about e-commerce products and brands.
 
@@ -64,10 +64,8 @@ Create a `.env` file in the project root.
 WEAVIATE_URL=https://your-cluster-url.weaviate.network
 WEAVIATE_API_KEY=your-weaviate-api-key
 INFERENCE_PROVIDER_API_KEY=your-gemini-api-key
-GOOGLE_STUDIO_API_KEY=your-gemini-api-key
+
 RESET_COLLECTIONS=false
-FLASK_HOST=127.0.0.1
-FLASK_PORT=5000
 ```
 
 Required variables:
@@ -75,52 +73,7 @@ Required variables:
 - `WEAVIATE_API_KEY`
 - `INFERENCE_PROVIDER_API_KEY`
 
-Optional variables:
-- `GOOGLE_STUDIO_API_KEY`
-- `RESET_COLLECTIONS`
-- `FLASK_HOST`
-- `FLASK_PORT`
 
-## CLI usage
-
-The CLI entry point is `src/cli.py`.
-
-### Setup schema and import seed data
-
-```powershell
-python -m src.cli setup
-```
-
-Behavior:
-- Optionally resets collections when `RESET_COLLECTIONS=true`
-- Ensures both collections exist
-- Imports cleaned seed data when collections are empty
-
-### Run demo flow
-
-```powershell
-python -m src.cli demo
-```
-
-Includes:
-- Search mode preview
-- 5 required ask-mode query examples
-
-### Ask a custom question
-
-```powershell
-python -m src.cli ask "Show in-stock shoes under 100 dollars"
-```
-
-### Run optional transformation workflow
-
-```powershell
-python -m src.cli transform
-```
-
-Output includes:
-- `workflow_id`
-- transformation status
 
 ## Web app usage
 
