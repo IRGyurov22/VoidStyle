@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VoidStyle Agent</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --bg-a: #05080f;
+        --bg-b: #090e1c;
+        --panel: rgba(4, 8, 18, 0.9);
+        --panel-2: rgba(7, 12, 26, 0.94);
+        --cyan: #00e7ff;
+        --magenta: #ff2ec7;
+        --violet: #9f4bff;
+        --green: #00ff9c;
+        --text: #dbecff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Outfit", "Segoe UI", sans-serif;
+        color: var(--text);
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 22% 6%, rgba(0, 231, 255, 0.16), transparent 24%),
+          radial-gradient(circle at 84% 8%, rgba(159, 75, 255, 0.17), transparent 28%),
+          linear-gradient(160deg, var(--bg-a), var(--bg-b));
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.35;
+        background-image:
+          linear-gradient(rgba(0, 231, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 231, 255, 0.08) 1px, transparent 1px);
+        background-size: 34px 34px;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          radial-gradient(circle at 9% 14%, rgba(0, 231, 255, 0.95) 1px, transparent 2px),
+          radial-gradient(circle at 73% 9%, rgba(0, 231, 255, 0.95) 1px, transparent 2px),
+          radial-gradient(circle at 85% 40%, rgba(0, 231, 255, 0.8) 1px, transparent 2px),
+          radial-gradient(circle at 14% 76%, rgba(255, 46, 199, 0.75) 1px, transparent 2px),
+          radial-gradient(circle at 90% 78%, rgba(159, 75, 255, 0.75) 1px, transparent 2px);
+      }
+
+      body.mode-landing {
+        padding: 14px 0 24px;
+      }
+
+      body.mode-chat {
+        padding: 0 0 118px;
+      }
+
+      .nav-link {
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        z-index: 20;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(0, 231, 255, 0.6);
+        border-radius: 10px;
+        padding: 12px 19px;
+        color: #bff6ff;
+        font-weight: 700;
+        font-size: 1.03rem;
+        text-decoration: none;
+        background: linear-gradient(135deg, rgba(17, 215, 255, 0.24), rgba(113, 70, 255, 0.24));
+        box-shadow: 0 0 18px rgba(17, 215, 255, 0.26);
+        transition: transform 0.16s ease, filter 0.16s ease;
+      }
+
+      .nav-link:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
+      }
+
+      .new-chat-form {
+        position: fixed;
+        top: 14px;
+        right: 14px;
+        z-index: 20;
+        margin: 0;
+      }
+
+      .new-chat-btn {
+        border: 1px solid rgba(0, 231, 255, 0.6);
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 12px 19px;
+        color: #bff6ff;
+        font-weight: 700;
+        font-size: 1.03rem;
+        font-family: inherit;
+        background: linear-gradient(135deg, rgba(17, 215, 255, 0.24), rgba(113, 70, 255, 0.24));
+        box-shadow: 0 0 18px rgba(17, 215, 255, 0.26);
+        transition: transform 0.16s ease, filter 0.16s ease;
+      }
+
+      .new-chat-btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
+      }
+
+      .topbar {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .topbar form {
+        margin: 0;
+      }
+
+      .top-btn {
+        border: 1px solid transparent;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 10px 16px;
+        color: #f3ecff;
+        font-weight: 700;
+        font-size: 0.98rem;
+        font-family: inherit;
+        background: linear-gradient(135deg, #5b7dff, #ff1aac);
+        box-shadow: 0 0 18px rgba(255, 46, 199, 0.3);
+        transition: transform 0.16s ease, filter 0.16s ease;
+      }
+
+      .top-btn.secondary {
+        background: linear-gradient(135deg, #7146ff, #11d7ff);
+        box-shadow: 0 0 18px rgba(17, 215, 255, 0.3);
+      }
+
+      .top-btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
+      }
+
+      .status {
+        padding: 12px 14px;
+        border-radius: 11px;
+        border: 1px solid rgba(0, 255, 156, 0.65);
+        background: linear-gradient(100deg, rgba(0, 255, 156, 0.14), rgba(159, 75, 255, 0.14));
+        color: #75ffbd;
+        font-size: 1.03rem;
+        box-shadow: 0 0 20px rgba(0, 255, 156, 0.21);
+      }
+
+      .status.error {
+        color: #ffb5da;
+        border-color: rgba(255, 46, 199, 0.66);
+        background: linear-gradient(95deg, rgba(255, 46, 199, 0.2), rgba(159, 75, 255, 0.16));
+        box-shadow: 0 0 20px rgba(255, 46, 199, 0.25);
+      }
+
+      .landing-shell {
+        width: min(980px, calc(100% - 40px));
+        margin: 0 auto;
+        position: relative;
+        z-index: 3;
+      }
+
+      .landing-hero {
+        background: linear-gradient(145deg, rgba(2, 7, 20, 0.94), rgba(4, 10, 26, 0.9));
+        border: 1px solid rgba(0, 231, 255, 0.65);
+        box-shadow: 0 0 24px rgba(0, 231, 255, 0.34), 0 0 42px rgba(128, 52, 255, 0.16);
+        border-radius: 12px;
+        padding: 20px;
+      }
+
+      .brand-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 10px;
+        color: #5bf6ff;
+        font-size: clamp(2rem, 4vw, 2.85rem);
+        line-height: 1;
+      }
+
+      .brand-icon {
+        width: 38px;
+        height: 38px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #7146ff, #ff2ec7);
+        box-shadow: 0 0 20px rgba(255, 46, 199, 0.35);
+        color: #ffe6ff;
+        font-size: 1.1rem;
+      }
+
+      .brand-subtitle {
+        margin: 0;
+        color: #d5ecff;
+        font-size: 1.06rem;
+        font-weight: 600;
+      }
+
+      .brand-subtitle strong {
+        color: #ff4cd0;
+        font-weight: 700;
+      }
+
+      .landing-tabs {
+        display: flex;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .landing-chip {
+        border-radius: 12px;
+        border: 1px solid rgba(0, 231, 255, 0.48);
+        background: rgba(6, 10, 22, 0.84);
+        color: #c7edff;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 10px 16px;
+        line-height: 1;
+      }
+
+      .landing-chip.secondary {
+        border-color: rgba(159, 75, 255, 0.62);
+      }
+
+      .landing-actions {
+        margin-top: 20px;
+      }
+
+      .landing-ask-card {
+        margin-top: 20px;
+        padding: 18px;
+        border-radius: 14px;
+        background: linear-gradient(145deg, rgba(4, 7, 22, 0.95), rgba(9, 7, 27, 0.92));
+        border: 1px solid rgba(255, 46, 199, 0.6);
+        box-shadow: 0 0 0 1px rgba(159, 75, 255, 0.24) inset, 0 0 26px rgba(159, 75, 255, 0.25);
+      }
+
+      .landing-ask-card form {
+        margin: 0;
+      }
+
+      .ask-label {
+        margin: 0 0 10px;
+        font-size: 1.03rem;
+        font-weight: 700;
+        color: #f2d6ff;
+      }
+
+      .landing-textarea {
+        width: 100%;
+        min-height: 108px;
+        resize: vertical;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 231, 255, 0.7);
+        background: rgba(0, 8, 20, 0.94);
+        color: #e1f8ff;
+        font-family: inherit;
+        font-size: 1rem;
+        padding: 14px;
+        outline: none;
+      }
+
+      .landing-textarea:focus {
+        border-color: #00f5ff;
+        box-shadow: 0 0 0 3px rgba(0, 231, 255, 0.13), 0 0 16px rgba(0, 231, 255, 0.24);
+      }
+
+      .landing-textarea::placeholder {
+        color: #8caed0;
+      }
+
+      .ask-btn {
+        border: 1px solid transparent;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 12px 16px;
+        color: #f3ecff;
+        font-weight: 700;
+        font-size: 1rem;
+        font-family: inherit;
+        background: linear-gradient(130deg, #8f2fff, #ff1493);
+        box-shadow: 0 0 20px rgba(255, 20, 147, 0.35);
+        transition: transform 0.16s ease, filter 0.16s ease;
+      }
+
+      .ask-btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
+      }
+
+      .landing-ask-card .ask-btn {
+        margin-top: 14px;
+        padding: 14px 22px;
+        font-size: 1rem;
+      }
+
+      .chat-shell {
+        width: min(860px, 100% - 28px);
+        margin: 18px auto 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      .chat-shell .status {
+        margin-bottom: 16px;
+      }
+
+      .conversation {
+        min-height: 52vh;
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+
+      .msg-wrap {
+        display: flex;
+      }
+
+      .msg-wrap.user {
+        justify-content: flex-end;
+      }
+
+      .msg-wrap.assistant {
+        justify-content: flex-start;
+      }
+
+      .msg {
+        max-width: min(680px, 100%);
+        border-radius: 14px;
+        padding: 14px 16px;
+        border: 1px solid rgba(0, 231, 255, 0.4);
+        background: linear-gradient(120deg, rgba(8, 15, 31, 0.72), rgba(15, 24, 49, 0.72));
+        box-shadow: 0 0 18px rgba(0, 231, 255, 0.22);
+      }
+
+      .msg.user {
+        border-color: rgba(255, 46, 199, 0.45);
+        background: linear-gradient(120deg, rgba(36, 20, 56, 0.78), rgba(18, 21, 49, 0.72));
+        box-shadow: 0 0 18px rgba(255, 46, 199, 0.2);
+      }
+
+      .msg-head {
+        margin: 0 0 8px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #c5f6ff;
+      }
+
+      .msg.user .msg-head {
+        color: #ffd2fb;
+      }
+
+      .answer-content {
+        margin: 0;
+        color: #def8ff;
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .answer-intro,
+      .answer-outro,
+      .answer-plain {
+        margin: 0;
+      }
+
+      .answer-intro {
+        margin-bottom: 10px;
+        color: #d9ecff;
+        font-weight: 600;
+      }
+
+      .answer-list {
+        margin: 0;
+        padding-left: 1.2rem;
+      }
+
+      .answer-list li {
+        margin-bottom: 8px;
+      }
+
+      .answer-price {
+        color: #89ffe0;
+        font-weight: 700;
+      }
+
+      .composer {
+        position: fixed;
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+        width: min(860px, calc(100% - 24px));
+        z-index: 12;
+        border-radius: 16px;
+        border: 1px solid rgba(0, 231, 255, 0.45);
+        background: var(--panel-2);
+        box-shadow:
+          0 0 0 1px rgba(0, 231, 255, 0.12) inset,
+          0 0 18px rgba(0, 231, 255, 0.3),
+          0 0 30px rgba(159, 75, 255, 0.18);
+        padding: 10px;
+      }
+
+      .composer form {
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: end;
+      }
+
+      .composer textarea {
+        width: 100%;
+        min-height: 56px;
+        max-height: 180px;
+        resize: vertical;
+        border-radius: 10px;
+        background: rgba(0, 7, 16, 0.85);
+        border: 1px solid rgba(0, 231, 255, 0.53);
+        color: #def9ff;
+        font-family: inherit;
+        font-size: 1rem;
+        padding: 12px;
+        outline: none;
+      }
+
+      .composer textarea::placeholder {
+        color: #8ab0db;
+      }
+
+      .composer textarea:focus {
+        border-color: #00f5ff;
+        box-shadow: 0 0 0 3px rgba(0, 231, 255, 0.12), 0 0 16px rgba(0, 231, 255, 0.26);
+      }
+
+      .composer .ask-btn {
+        align-self: center;
+      }
+
+      @media (max-width: 760px) {
+        body.mode-chat {
+          padding-bottom: 106px;
+        }
+
+        .nav-link {
+          top: 10px;
+          left: 10px;
+          padding: 10px 14px;
+          font-size: 0.94rem;
+        }
+
+        .new-chat-form {
+          top: 10px;
+          right: 10px;
+        }
+
+        .new-chat-btn {
+          padding: 10px 14px;
+          font-size: 0.94rem;
+        }
+
+        .landing-shell {
+          width: calc(100% - 16px);
+        }
+
+        .landing-hero {
+          padding: 16px;
+        }
+
+        .brand-title {
+          font-size: 2rem;
+        }
+
+        .brand-subtitle {
+          font-size: 1.05rem;
+        }
+
+        .landing-tabs {
+          flex-wrap: wrap;
+        }
+
+        .landing-chip {
+          flex: 1;
+          text-align: center;
+        }
+
+        .topbar {
+          width: 100%;
+          gap: 8px;
+        }
+
+        .top-btn {
+          width: 100%;
+        }
+
+        .landing-textarea {
+          font-size: 1rem;
+          min-height: 96px;
+        }
+
+        .landing-ask-card .ask-btn {
+          width: 100%;
+          font-size: 1rem;
+        }
+
+        .chat-shell {
+          width: calc(100% - 16px);
+          margin-top: 62px;
+        }
+
+        .composer {
+          width: calc(100% - 12px);
+          bottom: 8px;
+          padding: 8px;
+        }
+
+        .composer form {
+          grid-template-columns: 1fr;
+        }
+
+        .composer .ask-btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  {% set has_conversation = chat_history|length > 0 %}
+  <body class="{{ 'mode-chat' if has_conversation else 'mode-landing' }}">
+    <a class="nav-link" href="/">Go to Main Page</a>
+    <form class="new-chat-form" method="post" action="/new-chat">
+      <button class="new-chat-btn" type="submit">New Chat</button>
+    </form>
+
+    {% if boot_error %}
+    <main class="chat-shell">
+      <section class="status error">Configuration error: {{ boot_error }}</section>
+    </main>
+    {% elif has_conversation %}
+    <div class="topbar" style="width: min(960px, 100% - 28px); margin: 20px auto 0;">
+      <form method="post" action="/setup">
+        <button class="top-btn" type="submit">Setup Collections + Import Data</button>
+      </form>
+      <form method="post" action="/demo">
+        <button class="top-btn secondary" type="submit">Run 5-Query Demo</button>
+      </form>
+    </div>
+
+    <main class="chat-shell">
+      {% if message %}
+      <section class="status">{{ message }}</section>
+      {% endif %}
+
+      <section class="conversation">
+        {% for turn in chat_history %}
+        <div class="msg-wrap user">
+          <article class="msg user">
+            <p class="msg-head">You</p>
+            <div class="answer-content">{{ turn.question }}</div>
+          </article>
+        </div>
+        <div class="msg-wrap assistant">
+          <article class="msg">
+            <p class="msg-head">VoidStyle Agent</p>
+            <div class="answer-content">{{ turn.formatted_answer|safe }}</div>
+          </article>
+        </div>
+        {% endfor %}
+
+        {% if not chat_history %}
+        <div class="msg-wrap assistant">
+          <article class="msg">
+            <p class="msg-head">VoidStyle Agent</p>
+            <div class="answer-content">Ask another question about products and brands.</div>
+          </article>
+        </div>
+        {% endif %}
+      </section>
+      <div id="composer-anchor"></div>
+    </main>
+
+    <section class="composer" aria-label="Ask Query Agent">
+      <form method="post" action="/ask">
+        <textarea
+          id="question"
+          name="question"
+          placeholder="Ask anything about products, brands, budget, style, or availability..."
+        >{{ pending_question }}</textarea>
+        <button class="ask-btn" type="submit">Ask Query Agent</button>
+      </form>
+    </section>
+    {% else %}
+    <main class="landing-shell">
+      <section class="landing-hero">
+        <h1 class="brand-title"><span class="brand-icon">✶</span>VoidStyle</h1>
+        <p class="brand-subtitle">Your cosmic outfit destination. <strong>Discover different clothing from across the galaxy.</strong></p>
+        <div class="landing-tabs" aria-hidden="true">
+          <div class="landing-chip">Products</div>
+          <div class="landing-chip secondary">Brands</div>
+        </div>
+      </section>
+
+      <div class="landing-actions">
+        <div class="topbar" style="justify-content: flex-start;">
+          <form method="post" action="/setup">
+            <button class="top-btn" type="submit">Setup Collections + Import Data</button>
+          </form>
+          <form method="post" action="/demo">
+            <button class="top-btn secondary" type="submit">Run 5-Query Demo</button>
+          </form>
+        </div>
+      </div>
+
+      {% if message %}
+      <section class="status" style="margin-top: 16px;">{{ message }}</section>
+      {% endif %}
+
+      <section id="composer-anchor" class="landing-ask-card">
+        <p class="ask-label">Ask a question:</p>
+        <form method="post" action="/ask">
+          <textarea
+            class="landing-textarea"
+            id="question"
+            name="question"
+            placeholder="Example: Recommend in-stock shoes under 120 for rainy weather."
+          >{{ pending_question }}</textarea>
+          <button class="ask-btn" type="submit">Ask Query Agent</button>
+        </form>
+      </section>
+    </main>
+    {% endif %}
+  </body>
+</html>

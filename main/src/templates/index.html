@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VoidStyle</title>
+    <title>VoidStyle Home</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap");
 
@@ -16,7 +16,6 @@
         --cyan-soft: #52f3ff;
         --magenta: #ff2ec7;
         --violet: #9f4bff;
-        --green: #00ff9c;
         --text: #dbecff;
         --muted: #9eb3d6;
       }
@@ -64,10 +63,12 @@
       }
 
       .shell {
-        width: min(960px, 100% - 28px);
-        margin: 26px auto 38px;
+        width: min(1060px, 100% - 28px);
+        margin: 24px auto 34px;
         position: relative;
         z-index: 1;
+        display: grid;
+        gap: 18px;
       }
 
       .card {
@@ -78,58 +79,34 @@
           0 0 0 1px rgba(0, 231, 255, 0.14) inset,
           0 0 20px rgba(0, 231, 255, 0.35),
           0 0 48px rgba(0, 231, 255, 0.14);
-        padding: 20px;
-        margin-bottom: 18px;
+        padding: 18px;
       }
 
-      .brand-bar {
-        border-color: rgba(0, 231, 255, 0.48);
-        background: linear-gradient(120deg, rgba(0, 26, 34, 0.78), rgba(17, 11, 46, 0.78));
-        box-shadow:
-          0 0 0 1px rgba(0, 231, 255, 0.13) inset,
-          0 0 16px rgba(0, 231, 255, 0.3),
-          0 0 36px rgba(159, 75, 255, 0.12);
-        padding: 14px 16px;
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
-
 
       .title-wrap {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-
-      .logo {
-        width: 38px;
-        height: 38px;
-        border-radius: 11px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(145deg, #8d53ff, var(--magenta));
-        box-shadow: 0 0 20px rgba(255, 46, 199, 0.45);
-      }
-
-      .logo svg {
-        width: 20px;
-        height: 20px;
-        color: #f8f3ff;
+        display: block;
       }
 
       h1 {
         margin: 0;
         color: var(--cyan-soft);
-        font-size: clamp(1.8rem, 1.68rem + 0.6vw, 2.3rem);
+        font-size: clamp(1.8rem, 1.68rem + 0.6vw, 2.35rem);
         font-weight: 700;
         letter-spacing: -0.015em;
         text-shadow: 0 0 16px rgba(0, 231, 255, 0.4);
       }
 
       .subtitle {
-        margin: 2px 0 0;
+        margin: 8px 0 0;
         color: #96f4ff;
-        font-size: 1.11rem;
-        line-height: 1.5;
+        font-size: 1.08rem;
+        line-height: 1.58;
+        max-width: 65ch;
       }
 
       .subtitle em {
@@ -138,231 +115,154 @@
         font-weight: 600;
       }
 
-      .chip-row {
-        margin-top: 14px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 14px;
-        border-radius: 10px;
-        font-size: 1.06rem;
-        color: #94eeff;
-        border: 1px solid rgba(0, 231, 255, 0.55);
-        background: linear-gradient(135deg, rgba(0, 231, 255, 0.12), rgba(23, 27, 56, 0.7));
-        box-shadow: 0 0 16px rgba(0, 231, 255, 0.25);
-      }
-
-      .chip.magenta {
-        color: #ff99ea;
-        border-color: rgba(255, 46, 199, 0.55);
-        background: linear-gradient(135deg, rgba(255, 46, 199, 0.17), rgba(23, 14, 39, 0.7));
-        box-shadow: 0 0 16px rgba(255, 46, 199, 0.24);
-      }
-
-      .chip.violet {
-        color: #cfbeff;
-        border-color: rgba(159, 75, 255, 0.56);
-        background: linear-gradient(135deg, rgba(159, 75, 255, 0.2), rgba(16, 19, 44, 0.7));
-        box-shadow: 0 0 16px rgba(159, 75, 255, 0.24);
-      }
-
-      .chip svg {
-        width: 14px;
-        height: 14px;
-      }
-
-      .status {
-        padding: 13px 16px;
-        border-radius: 11px;
-        border: 1px solid rgba(0, 255, 156, 0.65);
-        background: linear-gradient(100deg, rgba(0, 255, 156, 0.14), rgba(159, 75, 255, 0.14));
-        color: #75ffbd;
-        font-size: 1.11rem;
-        box-shadow: 0 0 20px rgba(0, 255, 156, 0.21);
-        margin: 2px 0 12px;
-      }
-
-      .status.error {
-        color: #ffb5da;
-        border-color: rgba(255, 46, 199, 0.66);
-        background: linear-gradient(95deg, rgba(255, 46, 199, 0.2), rgba(159, 75, 255, 0.16));
-        box-shadow: 0 0 20px rgba(255, 46, 199, 0.25);
-      }
-
       .actions {
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
         margin-top: 2px;
-        margin-bottom: 22px;
       }
 
-      .actions form {
-        margin: 0;
-      }
-
-      button {
+      .btn {
         border: 1px solid transparent;
         border-radius: 10px;
         cursor: pointer;
         padding: 12px 19px;
         color: #f3ecff;
         font-weight: 700;
-        font-size: 1.05rem;
+        font-size: 1.02rem;
         font-family: inherit;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.16s ease, filter 0.16s ease;
+      }
+
+      .btn-primary {
         background: linear-gradient(135deg, #5b7dff, #ff1aac);
         box-shadow: 0 0 20px rgba(255, 46, 199, 0.34);
-        transition: transform 0.16s ease, filter 0.16s ease, box-shadow 0.16s ease;
       }
 
-      button:hover {
-        transform: translateY(-1px);
-        filter: brightness(1.08);
-      }
-
-      button.secondary {
+      .btn-secondary {
         background: linear-gradient(135deg, #7146ff, #11d7ff);
         box-shadow: 0 0 20px rgba(17, 215, 255, 0.3);
       }
 
-      button.ask-btn {
-        background: linear-gradient(130deg, #8f2fff, #ff1493);
-        box-shadow: 0 0 20px rgba(255, 20, 147, 0.35);
+      .btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
       }
 
-      .ask-card {
-        border-color: rgba(159, 75, 255, 0.68);
-        box-shadow:
-          0 0 0 1px rgba(159, 75, 255, 0.2) inset,
-          0 0 24px rgba(159, 75, 255, 0.36),
-          0 0 48px rgba(255, 46, 199, 0.13);
-        background: var(--panel-2);
-        margin-top: 4px;
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
       }
 
-      .ask-label {
-        margin: 0 0 10px;
-        color: #dcb7ff;
-        font-size: 1.06rem;
-        font-weight: 600;
+      .wide {
+        grid-column: 1 / -1;
       }
 
-      textarea {
-        width: 100%;
-        min-height: 112px;
-        resize: vertical;
-        border-radius: 8px;
-        background: rgba(0, 7, 16, 0.8);
-        border: 1px solid rgba(0, 231, 255, 0.53);
-        color: #def9ff;
-        font-family: inherit;
-        font-size: 1rem;
-        padding: 14px 12px;
-        outline: none;
-      }
-
-      textarea::placeholder {
-        color: #8ab0db;
-      }
-
-      textarea:focus {
-        border-color: #00f5ff;
-        box-shadow: 0 0 0 3px rgba(0, 231, 255, 0.12), 0 0 18px rgba(0, 231, 255, 0.3);
-      }
-
-      .ask-actions {
-        margin-top: 14px;
-      }
-
-      .output-title {
-        margin: 0 0 14px;
-        color: #4de8ff;
-        font-size: 2rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        text-shadow: 0 0 14px rgba(0, 231, 255, 0.33);
-      }
-
-      .output-divider {
-        height: 1px;
-        margin: 0 0 16px;
-        background: linear-gradient(90deg, rgba(0, 231, 255, 0.2), rgba(0, 231, 255, 0.45), rgba(0, 231, 255, 0.2));
-      }
-
-      pre {
+      .section-title {
         margin: 0;
-        border-radius: 9px;
-        border: 1px solid rgba(0, 231, 255, 0.38);
-        background: linear-gradient(100deg, rgba(98, 37, 148, 0.28), rgba(14, 22, 51, 0.7));
-        padding: 14px;
-        color: #def8ff;
-        font-size: 0.97rem;
+        color: #baf2ff;
+        font-size: 1.2rem;
+      }
+
+      .section-lead {
+        margin: 8px 0 12px;
+        color: var(--muted);
         line-height: 1.6;
-        white-space: pre-wrap;
-        word-wrap: break-word;
       }
 
-      .answer-content {
-        margin: 0;
-        border-radius: 9px;
-        border: 1px solid rgba(0, 231, 255, 0.38);
-        background: linear-gradient(100deg, rgba(98, 37, 148, 0.28), rgba(14, 22, 51, 0.7));
-        padding: 16px;
-        color: #def8ff;
-        font-size: 0.98rem;
-        line-height: 1.7;
+      .item-list {
+        display: grid;
+        gap: 10px;
       }
 
-      .answer-intro,
-      .answer-outro,
-      .answer-plain {
-        margin: 0;
+      .item {
+        border: 1px solid rgba(0, 231, 255, 0.35);
+        border-radius: 10px;
+        background: linear-gradient(120deg, rgba(8, 15, 31, 0.72), rgba(15, 24, 49, 0.72));
+        padding: 10px 12px;
       }
 
-      .answer-intro {
-        margin-bottom: 12px;
-        color: #d9ecff;
-        font-weight: 600;
+      .item strong {
+        display: block;
+        color: #d9f4ff;
       }
 
-      .answer-list {
-        margin: 0;
-        padding-left: 1.3rem;
+      .item span {
+        display: block;
+        margin-top: 4px;
+        color: #a9c2e5;
+        line-height: 1.5;
       }
 
-      .answer-list li {
-        margin-bottom: 8px;
+      .prompt-list {
+        display: grid;
+        gap: 8px;
       }
 
-      .answer-list li:last-child {
-        margin-bottom: 0;
+      .prompt-panel {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.24s ease, transform 0.24s ease;
       }
 
-      .answer-price {
-        color: #89ffe0;
-        font-weight: 700;
+      .prompt-panel.hidden {
+        display: none;
       }
 
-      .answer-outro {
-        margin-top: 14px;
-        color: #c8dcff;
+      .prompt-panel.reveal {
+        display: block;
+        opacity: 0;
+        transform: translateY(8px);
       }
 
-      .boot-note {
-        color: #f7c8e8;
-        margin-top: 8px;
-        font-size: 0.98rem;
+      .prompt-panel.reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .prompt {
+        border-radius: 10px;
+        border: 1px solid rgba(255, 46, 199, 0.44);
+        background: linear-gradient(120deg, rgba(46, 18, 58, 0.54), rgba(18, 20, 52, 0.54));
+        padding: 9px 11px;
+        color: #e6d6ff;
+        font-size: 0.96rem;
+        line-height: 1.5;
+      }
+
+      .panel-focus {
+        transition: box-shadow 0.22s ease, border-color 0.22s ease;
+      }
+
+      .panel-focus.flow-focus {
+        border-color: rgba(0, 231, 255, 0.7);
+        box-shadow: 0 0 0 3px rgba(0, 231, 255, 0.16), 0 0 20px rgba(0, 231, 255, 0.35), 0 0 48px rgba(0, 231, 255, 0.14);
+      }
+
+      .status {
+        padding: 13px 16px;
+        border-radius: 11px;
+        border: 1px solid rgba(255, 46, 199, 0.66);
+        background: linear-gradient(95deg, rgba(255, 46, 199, 0.2), rgba(159, 75, 255, 0.16));
+        color: #ffb5da;
+        box-shadow: 0 0 20px rgba(255, 46, 199, 0.25);
+      }
+
+      @media (min-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+          align-items: stretch;
+        }
       }
 
       @media (max-width: 760px) {
         .shell {
-          width: min(960px, 100% - 16px);
+          width: min(1060px, 100% - 16px);
           margin-top: 16px;
         }
 
@@ -374,109 +274,121 @@
           font-size: 0.98rem;
         }
 
-        .chip {
-          font-size: 0.95rem;
-        }
-
-        button {
+        .btn {
           width: 100%;
         }
 
         .actions {
           gap: 9px;
-          margin-bottom: 18px;
         }
-
-        .output-title {
-          font-size: 1.48rem;
-        }
-
-        .brand-bar {
-          padding: 12px;
-        }
-
       }
     </style>
   </head>
   <body>
     <main class="shell">
-      <section class="card">
-        <div class="title-wrap">
-          <div class="logo" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M12 3v3.5" />
-              <path d="M12 17.5V21" />
-              <path d="M3 12h3.5" />
-              <path d="M17.5 12H21" />
-              <path d="M6.5 6.5l2.4 2.4" />
-              <path d="M15.1 15.1l2.4 2.4" />
-              <path d="M17.5 6.5l-2.4 2.4" />
-              <path d="M8.9 15.1l-2.4 2.4" />
-            </svg>
+      <section class="card hero">
+        <div>
+          <div class="title-wrap">
+            <h1>VoidStyle Home</h1>
           </div>
-          <h1>VoidStyle</h1>
-        </div>
-        <p class="subtitle">Your cosmic outfit destination. <em>Discover different clothing from across the galaxy.</em></p>
-
-        <div class="chip-row">
-          <span class="chip violet">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse>
-              <path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path>
-              <path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"></path>
-            </svg>
-            Products
-          </span>
-          <span class="chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse>
-              <path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path>
-              <path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"></path>
-            </svg>
-            Brands
-          </span>
+          <p class="subtitle">Welcome to your AI shopping intelligence hub. <em>Explore capabilities, see example prompts, and enter the agent workspace when ready.</em></p>
+          <div class="actions">
+            <a class="btn btn-primary" href="/agent">Enter Agent Workspace</a>
+            <a class="btn btn-secondary" href="#agent-flow" id="agent-flow-btn">Prompt examples</a>
+          </div>
         </div>
       </section>
 
-      {% if boot_error %}
-      <section class="status error">Configuration error: {{ boot_error }}</section>
-      <p class="boot-note">Check your environment variables and restart the app.</p>
-      {% else %}
-      {% if message %}
-      <section class="status">{{ message }}</section>
-      {% endif %}
-
-      <div class="actions">
-        <form method="post" action="/setup">
-          <button type="submit">Setup Collections + Import Data</button>
-        </form>
-        <form method="post" action="/demo">
-          <button class="secondary" type="submit">Run 5-Query Demo</button>
-        </form>
-      </div>
-
-      <section class="card ask-card">
-        <p class="ask-label">Ask a question:</p>
-        <form method="post" action="/ask">
-          <textarea
-            id="question"
-            name="question"
-            placeholder="Example: Recommend in-stock shoes under 120 for rainy weather."
-          >{{ question }}</textarea>
-          <div class="ask-actions">
-            <button class="ask-btn" type="submit">Ask Query Agent</button>
+      <section class="grid">
+        <article class="card">
+          <h2 class="section-title">What this site offers</h2>
+          <p class="section-lead">Everything is built around natural-language discovery and quick experimentation over e-commerce data.</p>
+          <div class="item-list">
+            <div class="item">
+              <strong>Natural Product Discovery</strong>
+              <span>Find products by budget, style, use case, and stock state without manual query building.</span>
+            </div>
+            <div class="item">
+              <strong>Cross-Collection Context</strong>
+              <span>Blend product and brand information in one answer for richer recommendations.</span>
+            </div>
+            <div class="item">
+              <strong>Setup and Demo Workflow</strong>
+              <span>Initialize collections, run guided demos, and validate behavior quickly.</span>
+            </div>
           </div>
-        </form>
-      </section>
+        </article>
 
-      {% if answer %}
-      <section class="card">
-        <h2 class="output-title">Agent's response</h2>
-        <div class="output-divider"></div>
-        <div class="answer-content">{{ formatted_answer|safe }}</div>
+        <article class="card panel-focus" id="agent-flow">
+          <h2 class="section-title">How the agent works</h2>
+          <p class="section-lead">The Query Agent uses your Weaviate collections to return grounded responses and supports follow-up refinement.</p>
+          <div class="item-list">
+            <div class="item">
+              <strong>1. Prepare data</strong>
+              <span>Collections are created and seeded from JSON.</span>
+            </div>
+            <div class="item">
+              <strong>2. Interpret prompt</strong>
+              <span>Your natural-language question is mapped to retrieval behavior.</span>
+            </div>
+            <div class="item">
+              <strong>3. Return answer</strong>
+              <span>Results are composed from products and brands into a concise response.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card prompt-panel hidden wide" id="prompt-panel">
+          <h2 class="section-title">Example prompts to try</h2>
+          <p class="section-lead">Use these in the agent page to quickly test retrieval quality.</p>
+          <div class="prompt-list">
+            <div class="prompt">Show in-stock sneakers under 100 dollars for rainy weather.</div>
+            <div class="prompt">Which products come from outdoor-focused brands and what are their prices?</div>
+            <div class="prompt">From previous suggestions, keep only vintage style options and sort by price.</div>
+          </div>
+        </article>
+
+        {% if boot_error %}
+        <article class="status">Configuration issue detected: {{ boot_error }}</article>
+        {% endif %}
       </section>
-      {% endif %}
-      {% endif %}
     </main>
+
+    <script>
+      const flowButton = document.getElementById("agent-flow-btn");
+      const flowSection = document.getElementById("agent-flow");
+      const promptPanel = document.getElementById("prompt-panel");
+
+      if (flowButton && flowSection) {
+        flowButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          flowSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          flowSection.classList.add("flow-focus");
+
+          if (!promptPanel) {
+            setTimeout(() => flowSection.classList.remove("flow-focus"), 1200);
+            return;
+          }
+
+          const isHidden = promptPanel.classList.contains("hidden");
+
+          if (isHidden) {
+            promptPanel.classList.remove("hidden");
+            promptPanel.classList.add("reveal");
+            requestAnimationFrame(() => {
+              promptPanel.classList.add("show");
+            });
+          } else {
+            promptPanel.classList.remove("show");
+            setTimeout(() => {
+              promptPanel.classList.add("hidden");
+              promptPanel.classList.remove("reveal");
+            }, 220);
+          }
+
+          setTimeout(() => flowSection.classList.remove("flow-focus"), 1200);
+        });
+      }
+    </script>
   </body>
 </html>

@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 import re
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, session, url_for
 
 from src.config import load_settings
 from src.data_loader import (
@@ -21,6 +21,8 @@ from src.weaviate_client import connect
 
 NUMBERED_ITEM_RE = re.compile(r"^\s*\d+\.\s+(.+)$")
 PRICE_RE = re.compile(r"(Price:\s*\$?\d+(?:\.\d{2})?)")
+CHAT_HISTORY_KEY = "chat_history"
+MAX_CHAT_TURNS = 12
 
 
 def format_answer_for_display(answer: str) -> str:
@@ -83,8 +85,30 @@ def _ensure_data_ready(app: Flask, reset: bool = False) -> None:
     import_seed_data(client, data_dir)
 
 
+def _get_chat_history() -> list[dict[str, str]]:
+    raw_history = session.get(CHAT_HISTORY_KEY, [])
+    history: list[dict[str, str]] = []
+    if not isinstance(raw_history, list):
+        return history
+
+    for turn in raw_history:
+        if not isinstance(turn, dict):
+            continue
+        question = str(turn.get("question", "")).strip()
+        answer = str(turn.get("answer", "")).strip()
+        if not question or not answer:
+            continue
+        history.append({"question": question, "answer": answer})
+    return history
+
+
+def _store_chat_history(history: list[dict[str, str]]) -> None:
+    session[CHAT_HISTORY_KEY] = history[-MAX_CHAT_TURNS:]
+
+
 def create_app() -> Flask:
     app = Flask(__name__, template_folder="templates")
+    app.secret_key = os.getenv("FLASK_SECRET_KEY", "voidstyle-dev-key")
 
     try:
         settings, client, assistant, data_dir = _bootstrap_runtime()
@@ -100,58 +124,87 @@ def create_app() -> Flask:
     @app.get("/")
     def home():
         boot_error = app.config.get("BOOT_ERROR")
+        return render_template("index.html", boot_error=boot_error)
+
+    @app.get("/agent")
+    def agent_page():
+        boot_error = app.config.get("BOOT_ERROR")
         message = request.args.get("message", "")
-        answer = request.args.get("answer", "")
-        formatted_answer = format_answer_for_display(answer) if answer else ""
-        question = request.args.get("question", "")
+        pending_question = request.args.get("question", "")
+        chat_history = [
+            {
+                "question": turn["question"],
+                "answer": turn["answer"],
+                "formatted_answer": format_answer_for_display(turn["answer"]),
+            }
+            for turn in _get_chat_history()
+        ]
         return render_template(
-            "index.html",
+            "agent.html",
             boot_error=boot_error,
             message=message,
-            answer=answer,
-            formatted_answer=formatted_answer,
-            question=question,
+            pending_question=pending_question,
+            chat_history=chat_history,
             collections=[PRODUCTS_COLLECTION, BRANDS_COLLECTION],
         )
 
     @app.post("/setup")
     def setup_data():
         if app.config.get("BOOT_ERROR"):
-            return redirect(url_for("home", message="Cannot run setup due to configuration error."))
+            return redirect(url_for("agent_page", message="Cannot run setup due to configuration error."))
 
         try:
             _ensure_data_ready(app, reset=True)
-            return redirect(url_for("home", message="Setup complete. Collections are ready."))
+            return redirect(url_for("agent_page", message="Setup complete. Collections are ready."))
         except Exception as exc:
-            return redirect(url_for("home", message=f"Setup failed: {exc}"))
+            return redirect(url_for("agent_page", message=f"Setup failed: {exc}"))
 
     @app.post("/ask")
     def ask_question():
         if app.config.get("BOOT_ERROR"):
-            return redirect(url_for("home", message="Cannot query due to configuration error."))
+            return redirect(
+                url_for("agent_page", message="Cannot query due to configuration error.", _anchor="composer-anchor")
+            )
 
         question = request.form.get("question", "").strip()
         if not question:
-            return redirect(url_for("home", message="Please enter a question."))
+            return redirect(url_for("agent_page", message="Please enter a question.", _anchor="composer-anchor"))
 
         assistant = app.config["ASSISTANT"]
         try:
             _ensure_data_ready(app)
-            response = assistant.ask(question)
+            history = _get_chat_history()
+
+            conversation: list[dict[str, str]] = []
+            for turn in history:
+                conversation.append({"role": "user", "content": turn["question"]})
+                conversation.append({"role": "assistant", "content": turn["answer"]})
+            conversation.append({"role": "user", "content": question})
+
+            response = assistant.ask(conversation)
+            history.append({"question": question, "answer": response.final_answer})
+            _store_chat_history(history)
             return redirect(
                 url_for(
-                    "home",
+                    "agent_page",
                     message="Answer generated.",
-                    answer=response.final_answer,
+                    _anchor="composer-anchor",
                 )
             )
         except Exception as exc:
-            return redirect(url_for("home", message=f"Query failed: {exc}", question=question))
+            return redirect(
+                url_for(
+                    "agent_page",
+                    message=f"Query failed: {exc}",
+                    question=question,
+                    _anchor="composer-anchor",
+                )
+            )
 
     @app.post("/demo")
     def run_demo():
         if app.config.get("BOOT_ERROR"):
-            return redirect(url_for("home", message="Cannot run demo due to configuration error."))
+            return redirect(url_for("agent_page", message="Cannot run demo due to configuration error."))
 
         assistant = app.config["ASSISTANT"]
         try:
@@ -161,9 +214,17 @@ def create_app() -> Flask:
                 f"{item.title}\nPrompt: {item.prompt}\nAnswer: {item.answer}"
                 for item in demo_items
             )
-            return redirect(url_for("home", message="Demo completed.", answer=combined))
+            history = _get_chat_history()
+            history.append({"question": "Run 5-query demo", "answer": combined})
+            _store_chat_history(history)
+            return redirect(url_for("agent_page", message="Demo completed."))
         except Exception as exc:
-            return redirect(url_for("home", message=f"Demo failed: {exc}"))
+            return redirect(url_for("agent_page", message=f"Demo failed: {exc}"))
+
+    @app.post("/new-chat")
+    def new_chat():
+        session.pop(CHAT_HISTORY_KEY, None)
+        return redirect(url_for("agent_page", message="Started a new chat."))
 
     return app
 
