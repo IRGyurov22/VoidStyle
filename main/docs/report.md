@@ -1,49 +1,74 @@
-# Project Report: Weaviate E-Commerce Query System
+# Project Report: Weaviate E-Commerce Query System (VoidStyle)
 
-## 1. Goal
-This project delivers an intelligent e-commerce assistant that answers natural-language questions using Weaviate Agents over structured product and brand data.
+## 1. Project Goal
+VoidStyle is an e-commerce assistant that uses Weaviate Agents to answer natural-language questions over product and brand data.
 
-Core objectives:
-- Build a reproducible pipeline from local JSON data to searchable Weaviate collections.
-- Support user-friendly natural-language querying across multiple collections.
-- Demonstrate follow-up and context-aware questioning.
-- Provide both CLI and web interfaces for setup and interaction.
-- Include an optional transformation workflow for data enrichment.
+Primary goals in the current implementation:
 
-## 2. Architecture Overview
-The system is organized into three layers.
+- Build a reproducible ingestion pipeline from local JSON to Weaviate collections.
+- Support cross-collection natural-language querying (`Products` + `Brands`).
+- Provide an interactive Flask interface for setup, asking questions, and running a required 5-query demo.
+- Keep transformation support available as an optional extension.
 
-### 2.1 Data Layer
-- Storage and retrieval: Weaviate Cloud
+## 2. Current Architecture
+
+The project is organized into four practical layers.
+
+### 2.1 Configuration Layer
+
+- Module: `src/config.py`
+- Loads `.env` values via `python-dotenv`.
+- Validates required settings at startup.
+
+Required environment variables:
+
+- `WEAVIATE_URL`
+- `WEAVIATE_API_KEY`
+- `INFERENCE_PROVIDER_API_KEY`
+
+Optional variables currently used:
+
+- `GOOGLE_STUDIO_API_KEY`
+- `RESET_COLLECTIONS` (default `false`)
+- `FLASK_SECRET_KEY` (default `voidstyle-dev-key`)
+- `FLASK_HOST` (default `127.0.0.1`)
+- `FLASK_PORT` (default `5000`)
+
+### 2.2 Data + Schema Layer
+
+- Module: `src/data_loader.py`
 - Collections:
-	- `Products`
-	- `Brands`
-- Vectorization: `text2vec_google_gemini`
-- Seed input files:
-	- `data/products.json`
-	- `data/brands.json`
+  - `Products`
+  - `Brands`
+- Vectorizer: `text2vec_google_gemini`
+- Seed files:
+  - `data/products.json` (108 raw records)
+  - `data/brands.json` (31 raw records)
 
-### 2.2 Agent Layer
-- Query Agent (`weaviate.agents.query.QueryAgent`)
-	- Processes natural-language prompts.
-	- Queries both `Products` and `Brands` in one assistant context.
-	- Supports normal prompts, follow-up prompts, and broad free-form requests.
-- Transformation Agent (`weaviate.agents.transformation.TransformationAgent`, optional)
-	- Adds `auto_tags` to product objects.
-	- Runs asynchronously and returns `workflow_id` and status.
+### 2.3 Agent Layer
 
-### 2.3 Interface Layer
-- CLI interface (`src/cli.py`):
-	- `setup`, `demo`, `ask`, `transform`
-- Flask web interface (`app.py`, `src/flask_app.py`):
-	- Setup action
-	- Ask action
-	- Demo action
+- Query Agent wrapper: `src/query_assistant.py`
+  - Uses `weaviate.agents.query.QueryAgent`
+  - Queries both collections in one context
+  - Supports ask, search preview, and required demo prompts
+- Transformation extension: `src/transformation_extension.py` (optional)
+  - Uses `TransformationAgent`
+  - Appends `auto_tags` to product objects
+  - Returns `workflow_id` and status
+
+### 2.4 Interface Layer
+
+- Flask app entrypoint: `app.py` -> `src/flask_app.py`
+- Templates:
+  - `src/templates/index.html`
+  - `src/templates/agent.html`
+- CLI module exists in `src/cli.py` with commands (`setup`, `demo`, `ask`, `transform`) and `main()`.
+  - Note: no direct `if __name__ == "__main__":` entrypoint is present right now.
 
 ## 3. Data Model
 
-### 3.1 Products collection
-Fields:
+### 3.1 Products
+
 - `name` (TEXT)
 - `category` (TEXT)
 - `price` (NUMBER)
@@ -51,100 +76,104 @@ Fields:
 - `brand_name` (TEXT)
 - `description` (TEXT)
 
-### 3.2 Brands collection
-Fields:
+### 3.2 Brands
+
 - `brand_name` (TEXT)
 - `country` (TEXT)
 - `founded_year` (INT)
 - `style_focus` (TEXT)
 - `brand_story` (TEXT)
 
-## 4. Ingestion and Data Quality Logic
-The ingestion pipeline is intentionally defensive to improve retrieval quality.
+## 4. Ingestion and Data Quality Behavior
 
-Implemented steps:
-- Read JSON from local files.
-- Normalize text values (trim and collapse whitespace).
-- Coerce booleans (`in_stock`) from common string forms.
-- Validate numeric fields and bounds:
-	- `price >= 0`
-	- `1800 <= founded_year <= 2100`
-- Enforce cross-reference consistency:
-	- A product is inserted only if its `brand_name` exists in cleaned brands.
-- Deduplicate records:
-	- Brands: dedupe by `brand_name`
-	- Products: dedupe by (`name`, `brand_name`)
+The seed importer is defensive and normalizes data before insertion.
+
+Implemented cleaning steps:
+
+- Normalize all text values (trim + collapse internal whitespace).
+- Normalize category/style casing to lowercase.
+- Coerce booleans for `in_stock` from common text variants.
+- Parse and validate numerics:
+  - `price >= 0`
+  - `1800 <= founded_year <= 2100`
+- Validate cross-reference integrity:
+  - products are accepted only if `brand_name` exists in cleaned brands
+- Deduplicate:
+  - brands by `brand_name`
+  - products by (`name`, `brand_name`)
 
 Import behavior:
-- Create collections if they do not exist.
-- Insert seed data only when collection count is `0`.
-- Optional full reset when `RESET_COLLECTIONS=true`.
 
-## 5. Query Agent Behavior
-The Query Agent is initialized with:
-- Both collections (`Products`, `Brands`)
-- A system prompt that prioritizes factual, grounded responses and transparency when information is missing.
+- Create collections if missing.
+- Insert seed data only when collection count is zero.
+- Full reset support exists via `reset_collections()`.
 
-Supported interaction modes:
-- Direct single-question ask mode.
-- Search-preview mode (`assistant.search`) for object-level snapshot output.
-- Follow-up interaction via conversation messages.
-- Aggregation-like requests interpreted by agent reasoning.
+## 5. Query Behavior and Demo Coverage
 
-## 6. Demonstrated Query Scenarios
-The CLI demo covers five required prompt types:
+The Query Agent is initialized with a system prompt that prioritizes grounded answers and transparency when information is missing.
 
-1. Normal search:
-	 - "Show affordable shoes under 80 dollars with short reason why they are good."
-2. Multi-collection query:
-	 - "Which products come from brands focused on outdoor performance and what are their prices?"
-3. Follow-up prompt:
-	 - "From these suggestions, keep only in-stock options and prefer vintage style."
-4. Filtering/aggregation-like question:
-	 - "What is the average price of in-stock shoes and which brand has the highest priced shoe?"
-5. Free-form request:
-	 - "I need something stylish for rainy city walks and maybe a backup for formal evenings."
+Supported interaction styles:
 
-## 7. End-to-End Runtime Flow
-1. Load `.env` configuration and validate required keys.
-2. Connect to Weaviate Cloud with API-key auth and inference headers.
-3. Ensure schema for `Products` and `Brands`.
-4. Import cleaned seed data if collections are empty.
-5. Initialize Query Agent over both collections.
-6. Execute user command or web action.
-7. Return natural-language response (or transformation workflow status).
+- Single question ask mode.
+- Search mode (`assistant.search`) with object preview formatting.
+- Conversation-style prompts (list of user/assistant turns).
+- Aggregation-like natural-language requests.
 
-## 8. Environment and Configuration
-Required environment variables:
-- `WEAVIATE_URL`
-- `WEAVIATE_API_KEY`
-- `INFERENCE_PROVIDER_API_KEY`
+Required demo prompts implemented in code:
 
-Optional variables:
-- `GOOGLE_STUDIO_API_KEY`
-- `RESET_COLLECTIONS` (default: `false`)
-- `FLASK_HOST` (default: `127.0.0.1`)
-- `FLASK_PORT` (default: `5000`)
+1. Normal search
+2. Multi-collection query
+3. Follow-up prompt
+4. Filtering/aggregation-like question
+5. Free-form user request
 
-## 9. Strengths
-- Clean separation of concerns (config, client, ingestion, assistant, UI).
-- Reliable setup flow for demos and repeated execution.
-- Multi-interface support (CLI and web) without duplicated core logic.
-- Data cleaning and validation improves consistency and answer quality.
+## 6. Flask Runtime Flow
 
-## 10. Limitations
-- Answer quality depends on model behavior and dataset coverage.
-- Aggregation-like responses are agent-generated, not strict SQL aggregates.
-- Transformation Agent is preview-oriented and should be used on test data.
+Startup flow:
+
+1. Load settings and validate required env vars.
+2. Connect to Weaviate Cloud with API-key auth.
+3. Build a reusable Query Assistant.
+4. Keep references (`settings`, `client`, `assistant`, `data_dir`) in app config.
+
+Route behavior:
+
+- `GET /`: home page, includes boot-error banner when startup fails.
+- `GET /agent`: agent page + rendered chat history.
+- `POST /setup`: always resets collections, then ensures schema + imports seed data.
+- `POST /ask`: ensures schema/import (non-reset), builds conversation from session history, asks Query Agent, stores answer.
+- `POST /demo`: runs required 5-query demo and appends combined output to chat history.
+- `POST /new-chat`: clears chat history from session.
+
+Chat/session behavior:
+
+- Session key: `chat_history`
+- Max stored turns: 12
+- Assistant answers are HTML-formatted for numbered list readability.
+
+## 7. Strengths in Current State
+
+- Clear separation between config, ingestion, retrieval logic, and UI.
+- Safe and repeatable setup path through schema checks and seed import controls.
+- Multi-collection Query Agent setup matches the e-commerce domain.
+- Session-backed conversational flow improves continuity in web usage.
+
+## 8. Current Limitations
+
+- CLI functionality is implemented but lacks a direct script entrypoint guard.
+- Query quality depends on model and dataset coverage.
+- Aggregation-like answers are LLM-generated reasoning, not deterministic SQL metrics.
+- Transformation flow is optional and best treated as experimental/test workflow.
 - No automated test suite yet.
-- No persistent chat history or user profile memory yet.
 
-## 11. Future Improvements
-- Add unit and integration tests with mocked Weaviate client.
-- Add persistent conversation history storage.
-- Add evaluation metrics (latency, answer groundedness, relevance).
-- Add schema migration/versioning strategy.
-- Expand UI with structured filters and exportable answers.
+## 9. Recommended Next Improvements
 
-## 12. Conclusion
-The project successfully demonstrates an end-to-end AI retrieval workflow on e-commerce data using Weaviate Agents. It combines structured ingestion, multi-collection querying, and practical interfaces into a clear baseline for further academic or production-focused iteration.
+- Add `if __name__ == "__main__": main()` in `src/cli.py` for direct CLI execution.
+- Add unit tests for cleaning/validation and integration tests for setup/query paths.
+- Add structured observability (timings, request IDs, failure classification).
+- Persist chat history beyond session memory when needed.
+- Add evaluation harness for relevance/groundedness.
+
+## 10. Conclusion
+
+The current codebase delivers a working end-to-end AI retrieval assistant over e-commerce data using Weaviate Agents. It combines robust seed-data cleaning, cross-collection querying, and an interactive Flask interface, while leaving clear extension points for testing, observability, and production hardening.
